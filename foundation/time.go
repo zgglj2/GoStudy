@@ -4,7 +4,9 @@ import "fmt"
 import "time"
 
 func main() {
-	fmt.Println("Now time: ", time.Now())
-	fmt.Println("Now weekday: ", time.Now().Weekday())
+	t := time.Now()
+	fmt.Println("Now time: ", t)
+	fmt.Println("Now weekday: ", t.Weekday())
+	fmt.Println("Now Hour: ", t.Hour())
 	fmt.Println("Sunday: ", time.Sunday)
 }
