@@ -1,6 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+	"math"
+)
+
+//内建接口
+//type error interface {
+//	Error() string
+//}
 
 type DivideError struct {
 	devidee int
@@ -29,11 +38,48 @@ func Divide(devidee int, devider int) (result int, error string) {
 	}
 }
 
+type MyError struct {
+	When time.Time
+	What string
+}
+
+func (e *MyError) Error() string {
+	return fmt.Sprintf("at %v, %s",
+		e.When, e.What)
+}
+
+func run() error {
+	return &MyError{
+		time.Now(),
+		"it didn't work",
+	}
+}
+
+type ErrNegativeSqrt float64
+
+func (e ErrNegativeSqrt) Error() string {
+	return fmt.Sprintf("cannot Sqrt negative number: %v", e)
+}
+
+func Sqrt(x float64) (float64, error) {
+	//if x < 0 {
+	//	return 0, &ErrNegativeSqrt{}
+	//}
+	return math.Sqrt(x), nil
+}
+
 func main() {
-	if result, error := Divide(100, 10); error == "" {
+	if result, err := Divide(100, 10); err == "" {
 		fmt.Println("100/10 = ", result)
 	}
-	if _, error := Divide(100, 0); error != "" {
-		fmt.Println("error is ", error)
+	if _, err := Divide(100, 0); err != "" {
+		fmt.Println("error is ", err)
 	}
+
+	if err := run(); err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(Sqrt(2))
+	fmt.Println(Sqrt(-2))
 }
