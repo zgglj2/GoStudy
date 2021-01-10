@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var numbers1 = make([]int,3,5)
@@ -49,6 +52,40 @@ func main() {
 	copy(numbers6,numbers5)
 	printSlice(numbers6)
 
+	var s []int
+	fmt.Println(s, len(s), cap(s))
+	if s == nil {
+		fmt.Println("nil!")
+	}
+
+	board := [][]string{
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+	}
+
+	// 两个玩家轮流打上 X 和 O
+	board[0][0] = "X"
+	board[2][2] = "O"
+	board[1][2] = "X"
+	board[1][0] = "O"
+	board[0][2] = "X"
+
+	for i := 0; i < len(board); i++ {
+		fmt.Printf("%s\n", strings.Join(board[i], " "))
+	}
+
+	var s2 []int
+	printSlice(s2)
+
+	s2 = append(s2, 0)
+	printSlice(s2)
+
+	s2 = append(s2, 1)
+	printSlice(s2)
+
+	s2 = append(s2, 2, 3, 4)
+	printSlice(s2)
 }
 
 func printSlice(x []int){
