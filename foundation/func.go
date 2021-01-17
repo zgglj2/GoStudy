@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"runtime"
 )
 
 func Add(x int, y int) int {
@@ -35,6 +36,37 @@ func adder() func(int) int {
 	}
 }
 
+func min(s... int) int {
+	if len(s) == 0 {
+		return 0
+	}
+	min := s[0]
+	for _, v := range s {
+		if v < min {
+			min = v
+		}
+	}
+	return min
+}
+
+func f() (ret int) {
+	defer func() {
+		ret++
+	}()
+	return 1
+}
+
+func Add3() func(b int) int {
+	return func(b int) int {
+		return b + 2
+	}
+}
+
+func Adder3(a int) func(b int) int {
+	return func(b int) int {
+		return a + b
+	}
+}
 func main() {
 	fmt.Println("x + y = ", Add(1, 2))
 	fmt.Println("x + y = ", Add2(3, 4))
@@ -56,4 +88,17 @@ func main() {
 			neg(-2*i),
 		)
 	}
+
+	x := min(1, 3, 2, 0)
+	fmt.Printf("The minimum is: %d\n", x)
+	slice := []int{7,9,3,5,1}
+	x = min(slice...)
+	fmt.Printf("The minimum in the slice is: %d\n", x)
+
+	fmt.Println(f())
+
+	p3 := Add3()
+	fmt.Printf("Call Add3 for 3 gives: %v\n", p3(3))
+	TwoAdder := Adder3(2)
+	fmt.Printf("The result is: %v\n", TwoAdder(3))
 }
