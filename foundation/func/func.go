@@ -3,14 +3,13 @@ package main
 import (
 	"fmt"
 	"math"
-	"runtime"
 )
 
 func Add(x int, y int) int {
 	return x + y
 }
 
-func Add2(x , y int) int {
+func Add2(x, y int) int {
 	return x + y
 }
 
@@ -18,7 +17,7 @@ func Swap(x, y string) (string, string) {
 	return y, x
 }
 
-func Split(sum int)(x, y int) {
+func Split(sum int) (x, y int) {
 	x = sum * 4 / 9;
 	y = sum - x
 	return
@@ -36,7 +35,7 @@ func adder() func(int) int {
 	}
 }
 
-func min(s... int) int {
+func min(s ... int) int {
 	if len(s) == 0 {
 		return 0
 	}
@@ -91,7 +90,7 @@ func main() {
 
 	x := min(1, 3, 2, 0)
 	fmt.Printf("The minimum is: %d\n", x)
-	slice := []int{7,9,3,5,1}
+	slice := []int{7, 9, 3, 5, 1}
 	x = min(slice...)
 	fmt.Printf("The minimum in the slice is: %d\n", x)
 
