@@ -1,4 +1,4 @@
-package mutex
+package main
 
 import (
 	"time"

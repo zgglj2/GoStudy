@@ -1,4 +1,4 @@
-package fetcher
+package main
 
 import (
 	"fmt"

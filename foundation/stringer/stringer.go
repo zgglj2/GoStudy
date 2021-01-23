@@ -1,4 +1,4 @@
-package stringer
+package main
 
 import "fmt"
 

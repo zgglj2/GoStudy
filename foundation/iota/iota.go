@@ -1,4 +1,4 @@
-package iota
+package main
 
 import "fmt"
 

@@ -1,4 +1,4 @@
-package urlpoll
+package main
 
 import (
 	"time"

@@ -1,4 +1,4 @@
-package _var
+package main
 
 import "fmt"
 

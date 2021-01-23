@@ -1,4 +1,4 @@
-package _range
+package main
 
 import "fmt"
 

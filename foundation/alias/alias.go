@@ -1,4 +1,4 @@
-package alias
+package main
 
 import fm "fmt"
 

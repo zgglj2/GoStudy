@@ -1,4 +1,4 @@
-package goos
+package main
 
 import (
 	"runtime"

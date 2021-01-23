@@ -1,4 +1,4 @@
-package rot13reader
+package main
 
 import (
 	"io"

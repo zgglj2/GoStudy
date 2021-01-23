@@ -1,4 +1,4 @@
-package ifelse
+package main
 
 import (
 	"fmt"

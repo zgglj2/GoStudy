@@ -1,4 +1,4 @@
-package fibonacci
+package main
 
 import (
 	"time"
