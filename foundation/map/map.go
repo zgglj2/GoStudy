@@ -3,8 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var countryCapitalMap map[string]string
-	countryCapitalMap = make(map[string]string)
+	countryCapitalMap := make(map[string]string)
 
 	countryCapitalMap["France"] = "巴黎"
 	countryCapitalMap["Italy"] = "罗马"
@@ -30,4 +29,24 @@ func main() {
 	for country := range countryCapitalMap {
 		fmt.Println(country, "首都是", countryCapitalMap[country])
 	}
+
+	x := map[int]int{}
+	for i := 0; i < 10000; i++ {
+		x[i] = i
+	}
+	fmt.Println("初始化后,长度:", len(x))
+
+	// 遍历时删除所有的偶数
+	for k := range x {
+		if k%2 == 0 {
+			delete(x, k)
+		}
+	}
+	fmt.Println("删除所有的偶数后,长度:", len(x))
+
+	// 遍历时删除所有的元素
+	for k := range x {
+		delete(x, k)
+	}
+	fmt.Println("删除所有的元素后,长度:", len(x))
 }

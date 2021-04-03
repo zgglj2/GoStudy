@@ -11,8 +11,9 @@ func main() {
 	fmt.Println("os: ", runtime.GOROOT())
 
 	where := func() {
-		_, file, line, _ := runtime.Caller(1)
-		fmt.Printf("%s:%d", file, line)
+		pc, file, line, ok := runtime.Caller(1)
+		fmt.Printf("%s:%d\n", file, line)
+		fmt.Printf("%v:%v", pc, ok)
 	}
 	where()
 }

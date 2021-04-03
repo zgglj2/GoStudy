@@ -5,5 +5,14 @@ func main() {
 	for sum < 1000 {
 		sum += sum
 	}
-	print(sum)
+	println(sum)
+
+	sum = 1
+	for {
+		sum += sum
+		if sum > 1000 {
+			break
+		}
+		println(sum)
+	}
 }

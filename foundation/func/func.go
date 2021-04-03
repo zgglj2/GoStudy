@@ -18,7 +18,7 @@ func Swap(x, y string) (string, string) {
 }
 
 func Split(sum int) (x, y int) {
-	x = sum * 4 / 9;
+	x = sum * 4 / 9
 	y = sum - x
 	return
 }
@@ -35,7 +35,7 @@ func adder() func(int) int {
 	}
 }
 
-func min(s ... int) int {
+func min(s ...int) int {
 	if len(s) == 0 {
 		return 0
 	}
@@ -66,6 +66,15 @@ func Adder3(a int) func(b int) int {
 		return a + b
 	}
 }
+
+func fibonacci() func() int {
+	x, y := 0, 1
+	return func() int {
+		x, y = y, x+y
+		return x
+	}
+}
+
 func main() {
 	fmt.Println("x + y = ", Add(1, 2))
 	fmt.Println("x + y = ", Add2(3, 4))
@@ -100,4 +109,9 @@ func main() {
 	fmt.Printf("Call Add3 for 3 gives: %v\n", p3(3))
 	TwoAdder := Adder3(2)
 	fmt.Printf("The result is: %v\n", TwoAdder(3))
+
+	f := fibonacci()
+	for i := 0; i < 10; i++ {
+		fmt.Println(f())
+	}
 }
