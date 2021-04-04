@@ -32,6 +32,7 @@ func main() {
 	tick := time.Tick(100 * time.Millisecond)
 	boom := time.After(500 * time.Millisecond)
 	for {
+		fmt.Println(time.Now().UnixNano())
 		select {
 		case <-tick:
 			fmt.Println("tick.")
