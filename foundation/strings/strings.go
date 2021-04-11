@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -25,8 +25,7 @@ func main() {
 	fmt.Printf("The position of \"Burger\" is: ")
 	fmt.Printf("%d\n", strings.Index(str, "Burger"))
 
-
-	fmt.Println("strings.Contains(\"Hello.bak\", \"lo\"): ", strings.Replace(str, "Marc", "glj", -1))
+	fmt.Println("strings.Replace(\"Marc\", \"glj\"): ", strings.Replace(str, "Marc", "glj", -1))
 
 	str = "Hello, how is it going, Hugo?"
 	var manyG = "gggggggggg"
@@ -72,7 +71,7 @@ func main() {
 		fmt.Printf("%s - ", val)
 	}
 	fmt.Println()
-	str3 := strings.Join(sl2,";")
+	str3 := strings.Join(sl2, ";")
 	fmt.Printf("sl2 joined by ;: %s\n", str3)
 
 	reader := strings.NewReader("hello world")
@@ -92,7 +91,5 @@ func main() {
 	an = an + 5
 	newSs = strconv.Itoa(an)
 	fmt.Printf("The new string is: %s\n", newSs)
-
-
 
 }
