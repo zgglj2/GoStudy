@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	var numbers1 = make([]int,3,5)
+	var numbers1 = make([]int, 3, 5)
 
 	printSlice(numbers1)
 
@@ -14,7 +14,7 @@ func main() {
 
 	printSlice(numbers2)
 
-	numbers := []int{0,1,2,3,4,5,6,7,8}
+	numbers := []int{0, 1, 2, 3, 4, 5, 6, 7, 8}
 	printSlice(numbers)
 
 	fmt.Println("numbers ==", numbers)
@@ -25,7 +25,7 @@ func main() {
 
 	fmt.Println("numbers[4:] ==", numbers[4:])
 
-	numbers4 := make([]int,0,5)
+	numbers4 := make([]int, 0, 5)
 	printSlice(numbers4)
 
 	number2 := numbers[:2]
@@ -33,7 +33,6 @@ func main() {
 
 	number3 := numbers[2:5]
 	printSlice(number3)
-
 
 	var numbers5 []int
 	printSlice(numbers5)
@@ -44,12 +43,12 @@ func main() {
 	numbers5 = append(numbers5, 1)
 	printSlice(numbers5)
 
-	numbers5 = append(numbers5, 2,3,4)
+	numbers5 = append(numbers5, 2, 3, 4)
 	printSlice(numbers5)
 
 	numbers6 := make([]int, len(numbers5), (cap(numbers5))*2)
 
-	copy(numbers6,numbers5)
+	copy(numbers6, numbers5)
 	printSlice(numbers6)
 
 	var s []int
@@ -88,6 +87,6 @@ func main() {
 	printSlice(s2)
 }
 
-func printSlice(x []int){
-	fmt.Printf("len=%d cap=%d slice=%v\n",len(x),cap(x),x)
+func printSlice(x []int) {
+	fmt.Printf("len=%d cap=%d slice=%v\n", len(x), cap(x), x)
 }
