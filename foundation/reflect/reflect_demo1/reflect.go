@@ -83,9 +83,16 @@ func main() {
 		// error: panic: reflect.Value.SetString using value obtained using unexported field
 		//value.Field(i).SetString("C#")
 	}
+
 	// call the first method, which is String():
 	results := value.Method(0).Call(nil)
 	fmt.Println(results) // [Ada - Go - Oberon]
+
+	// 通过.NumMethod()来获取Student里头的方法
+	for i := 0; i < typ.NumMethod(); i++ {
+		m := typ.Method(i)
+		fmt.Printf("第%d个方法是：%s:%v\n", i+1, m.Name, m.Type)
+	}
 
 	t := T{23, "skidoo"}
 	s := reflect.ValueOf(&t).Elem()
