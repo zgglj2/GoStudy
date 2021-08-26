@@ -37,7 +37,32 @@ func main() {
 	enc := json.NewEncoder(file)
 	err := enc.Encode(vc)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
+	b := []byte(`{"Name": "Wednesday", "Age": 6, "Parents": ["Gomez", "Morticia"]}`)
+	var f interface{}
+	err = json.Unmarshal(b, &f)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(f)
+
+	m := f.(map[string]interface{})
+	for k, v := range m {
+		switch vv := v.(type) {
+		case string:
+			fmt.Println(k, "is string", vv)
+		case int:
+			fmt.Println(k, "is int", vv)
+		case []interface{}:
+			fmt.Println(k, "is an array:")
+			for i, u := range vv {
+				fmt.Println(i, u)
+			}
+		default:
+			fmt.Printf("%s is of a type(%T) I don’t know how to handle\n", k, v)
+		}
+	}
 }
