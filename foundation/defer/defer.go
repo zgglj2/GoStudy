@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
+	"time"
 )
 
 func func1(s string) (n int, err error) {
@@ -11,7 +13,18 @@ func func1(s string) (n int, err error) {
 	}()
 	return 7, io.EOF
 }
-
+func bigSlowOperation() {
+	defer trace("bigSlowOperation")() // don't forget the extra parentheses
+	// ...lots of work…
+	time.Sleep(10 * time.Second) // simulate slow operation by sleeping
+}
+func trace(msg string) func() {
+	start := time.Now()
+	log.Printf("enter %s", msg)
+	return func() {
+		log.Printf("exit %s (%s)", msg, time.Since(start))
+	}
+}
 func main() {
 	defer fmt.Println("world")
 	fmt.Println("hello")
@@ -25,4 +38,6 @@ func main() {
 	fmt.Println("done")
 
 	func1("Golang")
+
+	bigSlowOperation()
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"runtime"
 )
 
@@ -40,4 +41,7 @@ func main() {
 	// if runtime.GOOS == "windows" {
 	// 	fmt.Println(GetCpuInfo())
 	// }
+	var buf [4096]byte
+	n := runtime.Stack(buf[:], false)
+	os.Stdout.Write(buf[:n])
 }
