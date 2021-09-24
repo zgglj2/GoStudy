@@ -58,12 +58,15 @@ func openPackagePath(path string, metaonly bool) (*PackageFile, error) {
 	p.setPath(path).fileSize = uint64(fi.Size())
 	p.fileTime = fi.ModTime()
 
-	var newFiles []FileInfo
-	for _, fi := range p.files {
-		fi.digest = p.fileChecksums[fi.name]
-		newFiles = append(newFiles, fi)
+	// var newFiles []FileInfo
+	// for _, fi := range p.files {
+	// 	fi.digest = p.fileChecksums[fi.name]
+	// 	newFiles = append(newFiles, fi)
+	// }
+	// p.files = newFiles
+	for i := 0; i < len(p.files); i++ {
+		p.files[i].digest = p.fileChecksums[p.files[i].name]
 	}
-	p.files = newFiles
 	return p, nil
 }
 
