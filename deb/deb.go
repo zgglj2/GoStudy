@@ -49,7 +49,7 @@ func main() {
 			panic(err)
 		}
 
-		fmt.Println(header.Name, header.Size)
+		// fmt.Println(header.Name, header.Size)
 		if header.Typeflag == tar.TypeReg && header.Mode&0111 != 0 && header.Size != 0 {
 			if strings.HasPrefix(header.Name, "/usr/share/doc") {
 				continue
