@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"crypto/md5"
 	"fmt"
 	"io"
@@ -43,14 +44,17 @@ func ExamplePackageFile_Files(rpm_file string) {
 	files := pkg.Files()
 	fmt.Printf("total %v\n", len(files))
 	for _, fi := range files {
-		fmt.Printf("%v %v %v %5v %v %v %v\n",
+		fmt.Printf("%v %v %v %v %5v %v %v %v %v %v\n",
+			fi.Mode(),
 			fi.Mode().Perm(),
 			fi.Owner(),
 			fi.Group(),
 			fi.Size(),
 			fi.ModTime().UTC().Format("Jan 02 15:04"),
 			fi.Name(),
-			fi.Digest())
+			fi.Digest(),
+			fi.Mode().IsDir(),
+			fi.Mode().IsRegular())
 	}
 }
 
@@ -89,7 +93,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
+	var databuf bytes.Buffer
 	for {
 		header, err := reader.Next()
 		if err == io.EOF {
@@ -104,12 +108,19 @@ func main() {
 			if strings.HasPrefix(header.Filename(), "/usr/share/doc") {
 				continue
 			}
-			buf := make([]byte, header.Filesize64())
-			_, err := reader.Read(buf)
+			// buf := make([]byte, header.Filesize64())
+			// _, err := reader.Read(buf)
+			// if err != nil {
+			// 	panic(err)
+			// }
+			// has := md5.Sum(buf)
+			databuf.Reset()
+			_, err = io.Copy(&databuf, reader)
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
+				continue
 			}
-			has := md5.Sum(buf)
+			has := md5.Sum(databuf.Bytes())
 			md5str := fmt.Sprintf("%x", has)
 			fmt.Println(header.Filename(), md5str)
 		}

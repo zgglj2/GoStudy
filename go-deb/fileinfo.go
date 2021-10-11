@@ -50,7 +50,7 @@ func (f *FileInfo) ModTime() time.Time {
 
 // IsDir returns true if a file is a directory in a Deb package
 func (f *FileInfo) IsDir() bool {
-	return f.isDir
+	return f.mode.IsDir()
 }
 
 // Owner is the name of the owner of a file in a Deb package

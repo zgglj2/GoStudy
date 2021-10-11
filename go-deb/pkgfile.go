@@ -39,6 +39,66 @@ func OpenPackageFile(uri string, metaonly bool) (*PackageFile, error) {
 	return pf, err
 }
 
+func PayloadReader(uri string, metaonly bool) (*tar.Reader, error) {
+	var reader *tar.Reader
+	var err error
+	if strings.Contains(uri, "://") && strings.HasPrefix(strings.ToLower(uri), "http") {
+		reader, err = PayloadReaderURL(uri, metaonly)
+	} else {
+		reader, err = PayloadReaderPath(uri, metaonly)
+	}
+
+	return reader, err
+}
+
+func PayloadReaderPath(path string, metaonly bool) (*tar.Reader, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	reader, err := NewPackageFileReader(f).SetMetaonly(metaonly).payloadReader()
+	if err != nil {
+		return nil, err
+	}
+	return reader, nil
+}
+func PayloadReaderURL(path string, metaonly bool) (*tar.Reader, error) {
+	resp, err := http.Get(path)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	reader, err := NewPackageFileReader(resp.Body).SetMetaonly(metaonly).payloadReader()
+	if err != nil {
+		return nil, err
+	}
+	return reader, nil
+}
+func (pfr *PackageFileReader) payloadReader() (*tar.Reader, error) {
+	for {
+		header, err := pfr.arcnt.Next()
+		if err != nil {
+			if err == io.EOF {
+				break
+			} else {
+				panic(err)
+			}
+		} else {
+			// Yocto's IPK has trailing path for some weird reasons (same format tho)
+			header.Name = path.Base(strings.ReplaceAll(header.Name, "/", ""))
+
+			if strings.HasPrefix(header.Name, "data.") {
+				return pfr.decompressTar(*header), nil
+			}
+		}
+	}
+
+	return nil, fmt.Errorf("data not found!")
+}
+
 func openPackagePath(path string, metaonly bool) (*PackageFile, error) {
 	f, err := os.Open(path)
 	if err != nil {
@@ -86,6 +146,9 @@ func openPackageURL(path string, metaonly bool) (*PackageFile, error) {
 	if lm := resp.Header.Get("Last-Modified"); len(lm) > 0 {
 		t, _ := time.Parse(time.RFC1123, lm) // ignore malformed timestamps
 		p.fileTime = t
+	}
+	for i := 0; i < len(p.files); i++ {
+		p.files[i].digest = p.fileChecksums[p.files[i].name]
 	}
 	return p, nil
 }
