@@ -103,19 +103,14 @@ func main() {
 			panic(err)
 		}
 
-		fmt.Println(header.Filename(), header.Filesize64())
+		// fmt.Println(header.Filename(), header.Filesize64())
 		if header.Mode()&0111 != 0 && header.Filesize64() != 0 {
 			if strings.HasPrefix(header.Filename(), "/usr/share/doc") {
 				continue
 			}
-			// buf := make([]byte, header.Filesize64())
-			// _, err := reader.Read(buf)
-			// if err != nil {
-			// 	panic(err)
-			// }
-			// has := md5.Sum(buf)
+
 			databuf.Reset()
-			_, err = io.Copy(&databuf, reader)
+			_, err := io.Copy(&databuf, reader)
 			if err != nil {
 				fmt.Println(err)
 				continue

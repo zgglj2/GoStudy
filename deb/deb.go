@@ -54,13 +54,7 @@ func main() {
 			if strings.HasPrefix(header.Name, "/usr/share/doc") {
 				continue
 			}
-			// buf := make([]byte, header.Size)
-			// _, err := reader.Read(buf)
-			// if err != nil && err != io.EOF {
-			// 	fmt.Println(err)
-			// 	continue
-			// }
-			// has := md5.Sum(buf)
+
 			databuf.Reset()
 			_, err = io.Copy(&databuf, reader)
 			if err != nil {
