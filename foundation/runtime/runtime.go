@@ -30,6 +30,8 @@ func main() {
 	fmt.Println("os: ", runtime.GOOS)
 	fmt.Println("os: ", runtime.GOARCH)
 	fmt.Println("os: ", runtime.GOROOT())
+	fmt.Println("os: ", runtime.NumCPU())
+	fmt.Println("os: ", runtime.NumGoroutine())
 
 	where := func() {
 		pc, file, line, ok := runtime.Caller(1)
