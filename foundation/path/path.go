@@ -10,5 +10,6 @@ func main() {
 	fmt.Println(filepath.Base(fpath))
 	fmt.Println(filepath.Dir(fpath))
 	fmt.Println(filepath.Ext(fpath))
-
+	fmt.Println(filepath.Clean("/root///test/test.abc"))
+	fmt.Println(filepath.Clean("/root\\test\\test.abc"))
 }
