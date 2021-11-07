@@ -18,11 +18,19 @@ func main() {
 	defer inputFile.Close()
 	inputReader := bufio.NewReader(inputFile)
 	for {
-		inputString, readerError := inputReader.ReadString('\n')
-		fmt.Printf("The input was: %s", inputString)
-		if readerError == io.EOF {
+		line, err := inputReader.ReadString('\n')
+		if err == io.EOF {
+			if len(line) != 0 {
+				fmt.Printf("The input was: %s", line)
+			}
+			fmt.Println("文件读完了")
 			break
 		}
+		if err != nil {
+			fmt.Println("read file failed, err:", err)
+			return
+		}
+		fmt.Printf("The input was: %s", line)
 	}
 	fmt.Println("")
 	file, err := os.Open("products2.txt")
