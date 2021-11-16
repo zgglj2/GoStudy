@@ -1,68 +1,40 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
+	"io"
 	"net"
-	"strconv"
-	"syscall"
+	"time"
+
+	"GoStudy/foundation/proto"
 )
 
-const maxRead = 25
+func process(conn net.Conn) {
+	defer conn.Close()
 
-func checkError(error error, info string) {
-	if error != nil {
-		panic("ERROR: " + info + " " + error.Error()) // terminate program
-	}
-}
-
-func initServer(hostPort string) *net.TCPListener {
-	serverAddr, err := net.ResolveTCPAddr("tcp", hostPort)
-	checkError(err, "Resolving address:port failed: '"+hostPort+"'")
-	listener, err := net.ListenTCP("tcp", serverAddr)
-	checkError(err, "ListenTCP: ")
-	println("Listening to: ", listener.Addr().String())
-	return listener
-}
-
-func handleMSG(readn int, err error, buf []byte) {
-	if readn > 0 {
-		print("<", readn, ":")
-		for i := 0; ; i++ {
-			if buf[i] == 0 {
-				break
-			}
-			fmt.Printf("%c", buf[i])
-		}
-		print(">")
-	}
-}
-func connectionHandler(conn net.Conn) {
 	connFrom := conn.RemoteAddr()
 	fmt.Println("Connection from: ", connFrom)
 
-	welcome := "Welcome!!!"
-	wrote, err := conn.Write([]byte(welcome))
-	checkError(err, "Write: wrote "+strconv.Itoa(wrote)+" bytes.")
+	reader := bufio.NewReader(conn)
+
 	for {
-		buf := make([]byte, maxRead+1)
-		readn, err := conn.Read(buf[0:maxRead])
-		buf[readn] = 0
-		switch err {
-		case nil:
-			handleMSG(readn, err, buf)
-		case syscall.Errno(0xb):
-			continue
-		default:
-			goto DISCONNECT
+		recvStr, err := proto.Decode(reader)
+		if err == io.EOF {
+			return
 		}
+		if err != nil {
+			fmt.Println("read from client failed, err: ", err)
+			break
+		}
+		if recvStr == "" {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("recv: ", recvStr)
+		// conn.Write(buf[0:n])
 	}
-
-DISCONNECT:
-	err = conn.Close()
-	println("Closed connection: ", connFrom)
-	checkError(err, "Close: ")
-
 }
 func main() {
 	flag.Parse()
@@ -73,12 +45,20 @@ func main() {
 		port = flag.Arg(1)
 	}
 	hostAndPort := fmt.Sprintf("%s:%s", host, port)
-	listener := initServer(hostAndPort)
+	listener, err := net.Listen("tcp", hostAndPort)
+	if err != nil {
+		fmt.Println("listen failed, err: ", err)
+		return
+	}
+	defer listener.Close()
 
 	for {
 		conn, err := listener.Accept()
-		checkError(err, "Accept: ")
-		go connectionHandler(conn)
+		if err != nil {
+			fmt.Println("accept failed, err: ", err)
+			time.Sleep(time.Second)
+			continue
+		}
+		go process(conn)
 	}
-
 }
