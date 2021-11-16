@@ -1,0 +1,9 @@
+go test -v
+go test -v -run=Split/"leading sep"
+
+go test -v -cover
+go test -cover -coverprofile="cover.out"
+go tool cover -html="cover.out"
+
+go test -bench=Split
+go test -bench=Split -benchmem
