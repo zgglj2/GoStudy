@@ -1,0 +1,9 @@
+go run .\pprof.go -cpu -mem
+
+go tool pprof cpu.prof
+go tool pprof mem.prof
+    
+    top 3
+    web
+    list
+
