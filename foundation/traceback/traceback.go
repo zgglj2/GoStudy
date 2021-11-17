@@ -75,8 +75,20 @@ func panicgoroutine(c chan bool) {
 	time.Sleep(5 * time.Second)
 
 	panic("Panic, omg ...")
-	// c <- true
+	c <- true
 }
+
+// func readForever(ch chan (bool)) {
+// 	for {
+// 		<-ch
+// 	}
+// }
+
+// func writeForever(ch chan (bool)) {
+// 	for {
+// 		ch <- true
+// 	}
+// }
 func main() {
 	logFile, err := os.OpenFile("./fatal.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, 0660)
 	if err != nil {
@@ -91,4 +103,12 @@ func main() {
 	for i := 0; i < 2; i++ {
 		<-c
 	}
+
+	// ch := make(chan (bool), 1)
+
+	// go func() {
+	// 	readForever(ch)
+	// }()
+
+	// writeForever(ch)
 }
