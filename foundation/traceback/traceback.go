@@ -60,6 +60,7 @@ func redirectStderr(f *os.File) {
 		// if err != nil {
 		// 	log.Fatalf("Failed to redirect stderr to file: %v", err)
 		// }
+		fmt.Println("linux")
 	}
 
 }
@@ -75,7 +76,7 @@ func panicgoroutine(c chan bool) {
 	time.Sleep(5 * time.Second)
 
 	panic("Panic, omg ...")
-	c <- true
+	// c <- true
 }
 
 // func readForever(ch chan (bool)) {
