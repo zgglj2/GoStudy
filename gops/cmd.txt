@@ -1,0 +1,5 @@
+gops tree
+gops stack 10020
+gops memstats 10020
+gops pprof-cpu 10020
+gops pprof-heap 10020
