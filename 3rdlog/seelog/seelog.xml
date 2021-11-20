@@ -1,0 +1,14 @@
+<seelog type="asynctimer" asyncinterval="1000000" minlevel="trace" maxlevel="error">
+    <outputs formatid="main">
+        <!-- 仅实现将日志内容输出到终端 -->
+        <console/>
+        <buffered size="10000" flushperiod="1000">
+			<rollingfile type="date" filename="seelog.log" datepattern="2006.01.02" maxrolls="2"/>
+		</buffered>
+    </outputs>
+    <formats>
+        <!-- 设置格式，输出UTC日期 UTC时间 - 缩写版大写日志级别 - 相对于应用程序运行目录的调用者路径 - 日志记录器被调用时的行号 - 消息文本（最后换行） -->
+        <format id="main" format="%UTCDate %UTCTime - [%LEV] - %RelFile:%Line - %Msg%n"/>
+    </formats>
+</seelog>
+
