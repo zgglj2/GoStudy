@@ -24,14 +24,18 @@ func main() {
 	}).Info("一条舔狗出现了。")
 
 	logger.SetLevel(logrus.TraceLevel)
-
+	logger.SetReportCaller(true)
 	logger.Trace("Something very low level.")
 	logger.Debug("Useful debugging information.")
 	logger.Info("Something noteworthy happened!")
 	logger.Warn("You should probably take a look at this.")
 	logger.Error("Something failed but I'm not quitting.")
 	// 记完日志后会调用os.Exit(1)
-	logger.Fatal("Bye.")
+	// logger.Fatal("Bye.")
 	// 记完日志后会调用 panic()
-	logger.Panic("I'm bailing.")
+	// logger.Panic("I'm bailing.")
+
+	requestLogger := logger.WithFields(logrus.Fields{"name": "glj", "user_ip": "1.1.1.1"})
+	requestLogger.Info("something happened on that request")
+	requestLogger.Warn("something not great happened")
 }
