@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	_ "net/http/pprof"
 )
 
 func f1(w http.ResponseWriter, r *http.Request) {
@@ -41,5 +42,12 @@ func main() {
 	http.HandleFunc("/", f1)
 	http.HandleFunc("/get", getHandler)
 	http.HandleFunc("/post", postHandler)
+
+	// http.HandleFunc("/debug/pprof/", pprof.Index)
+	// http.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
+	// http.HandleFunc("/debug/pprof/profile", pprof.Profile)
+	// http.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
+	// http.HandleFunc("/debug/pprof/trace", pprof.Trace)
+
 	http.ListenAndServe("127.0.0.1:9090", nil)
 }
