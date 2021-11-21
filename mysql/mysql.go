@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jmoiron/sqlx"
 )
 
 type user struct {
@@ -230,6 +231,59 @@ func sqlInjectDemo(name string) {
 	}
 	fmt.Printf("user:%#v\n", u)
 }
+
+type user_sqlx struct {
+	Id   int
+	Age  int
+	Name string
+}
+
+var dbSqlx *sqlx.DB
+
+// 定义一个初始化数据库的函数
+func initDBSqlx() (err error) {
+	// DSN:Data Source Name
+	dsn := "root:ss.glj.123@tcp(127.0.0.1:3306)/sql_test?charset=utf8mb4&parseTime=True"
+	// 不会校验账号密码是否正确
+	// 注意！！！这里不要使用:=，我们是给全局变量赋值，然后在main函数中使用全局变量db
+	dbSqlx, err = sqlx.Connect("mysql", dsn)
+	if err != nil {
+		return err
+	}
+	// 尝试与数据库建立连接（校验dsn是否正确）
+	err = dbSqlx.Ping()
+	if err != nil {
+		return err
+	}
+	dbSqlx.SetMaxOpenConns(10)
+	dbSqlx.SetMaxIdleConns(5)
+	return nil
+}
+
+// 查询单条数据示例
+func queryRowDemoSqlx() {
+	sqlStr := "select id, name, age from user where id=?"
+	var u user_sqlx
+	// 非常重要：确保QueryRow之后调用Scan方法，否则持有的数据库链接不会被释放
+	err := dbSqlx.Get(&u, sqlStr, 1)
+	if err != nil {
+		fmt.Printf("scan failed, err:%v\n", err)
+		return
+	}
+	fmt.Printf("id:%d name:%s age:%d\n", u.Id, u.Name, u.Age)
+}
+
+// 查询多条数据示例
+func queryMultiRowDemoSqlx() {
+	uselist := make([]user_sqlx, 0, 10)
+	sqlStr := "select id, name, age from user where id > ?"
+	err := dbSqlx.Select(&uselist, sqlStr, 0)
+	if err != nil {
+		fmt.Printf("query failed, err:%v\n", err)
+		return
+	}
+	fmt.Printf("userlist: %#v\n", uselist)
+}
 func main() {
 	err := initDB() // 调用输出化数据库的函数
 	if err != nil {
@@ -259,4 +313,12 @@ func main() {
 	sqlInjectDemo("xxx' union select * from user #")
 	sqlInjectDemo("xxx' and (select count(*) from user) <10 #")
 	fmt.Println("sqlInjectDemo() finish")
+
+	err = initDBSqlx()
+	if err != nil {
+		fmt.Printf("init db sqlx failed,err:%v\n", err)
+		return
+	}
+	queryRowDemoSqlx()
+	queryMultiRowDemoSqlx()
 }
