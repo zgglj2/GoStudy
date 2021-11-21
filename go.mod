@@ -19,14 +19,13 @@ require (
 	github.com/go-ini/ini v1.63.2
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-playground/validator/v10 v10.9.0 // indirect
-	github.com/go-redis/redis v6.15.9+incompatible // indirect
-	github.com/go-redis/redis/v8 v8.11.4 // indirect
+	github.com/go-redis/redis v6.15.9+incompatible
+	github.com/go-redis/redis/v8 v8.11.4
 	github.com/go-sql-driver/mysql v1.6.0
-	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/gops v0.3.22
 	github.com/hpcloud/tail v1.0.0
 	github.com/isbm/go-deb v0.0.0-20200606113352-45f79b074aa5
-	github.com/jmoiron/sqlx v1.3.4 // indirect
+	github.com/jmoiron/sqlx v1.3.4
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/lxn/walk v0.0.0-20210112085537-c389da54e794
 	github.com/lxn/win v0.0.0-20210218163916-a377121e959e // indirect
@@ -34,10 +33,11 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.8
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
+	github.com/nsqio/go-nsq v1.1.0
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sassoftware/go-rpmutils v0.2.0
 	github.com/schollz/progressbar/v3 v3.8.3
-	github.com/shirou/gopsutil v3.21.10+incompatible // indirect
+	github.com/shirou/gopsutil v3.21.10+incompatible
 	github.com/sirupsen/logrus v1.8.1
 	github.com/sony/sonyflake v1.0.0
 	github.com/ugorji/go v1.2.6 // indirect
@@ -53,11 +53,9 @@ require (
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 	golang.org/x/tools v0.1.7
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.27.1 // indirect
+	google.golang.org/protobuf v1.27.1
 	gopkg.in/Knetic/govaluate.v3 v3.0.0 // indirect
-	gopkg.in/fsnotify.v1 v1.4.7 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
 replace github.com/cavaliercoder/go-rpm => ./go-rpm
