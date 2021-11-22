@@ -1,0 +1,11 @@
+nsqlookupd.exe
+
+nsqd.exe --lookupd-tcp-address=127.0.0.1:4160 --broadcast-address=127.0.0.1
+
+nsqadmin.exe --lookupd-http-address=127.0.0.1:4161
+
+curl -d "hello world 1" "http://127.0.0.1:4151/pub?topic=test"
+curl -d "hello world 2" "http://127.0.0.1:4151/pub?topic=test"
+curl -d "hello world 3" "http://127.0.0.1:4151/pub?topic=test"
+
+nsq_to_file.exe --topic=test --output-dir=. --lookupd-http-address=127.0.0.1:4161
