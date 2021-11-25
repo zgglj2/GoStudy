@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	"go.etcd.io/etcd/clientv3"
-	"go.etcd.io/etcd/clientv3/concurrency"
+	"github.com/coreos/etcd/clientv3"
+	"github.com/coreos/etcd/clientv3/concurrency"
 )
 
 func main() {
@@ -42,6 +42,7 @@ func main() {
 		fmt.Printf("Lock failed, err:%v\n", err)
 		return
 	}
+	fmt.Println("acquired lock for s1")
 	m2Locked := make(chan struct{})
 	go func() {
 		defer close(m2Locked)
