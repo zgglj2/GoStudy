@@ -40,7 +40,9 @@ require (
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/nsqio/go-nsq v1.1.0
+	github.com/panjf2000/ants v1.3.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/robfig/cron v1.2.0 // indirect
 	github.com/sassoftware/go-rpmutils v0.2.0
 	github.com/schollz/progressbar/v3 v3.8.3
 	github.com/shirou/gopsutil v3.21.10+incompatible
