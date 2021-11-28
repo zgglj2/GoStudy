@@ -5,6 +5,7 @@ import (
 	"GoStudy/logagent/etcd"
 	"GoStudy/logagent/kafka"
 	"GoStudy/logagent/taillog"
+	"GoStudy/logagent/utils"
 	"fmt"
 	"os"
 	"os/signal"
@@ -41,8 +42,14 @@ func main() {
 	}
 	defer etcd.Finish()
 	fmt.Println("init etcd success")
-
-	logEntryConf, err := etcd.GetConf(appConf.Key)
+	ipStr, err := utils.GetOutboundIP()
+	if err != nil {
+		fmt.Println("get out bound ip failed, err: ", err)
+		return
+	}
+	fmt.Println("out bound ip: ", ipStr)
+	etcdConfKey := fmt.Sprintf(appConf.Key, ipStr)
+	logEntryConf, err := etcd.GetConf(etcdConfKey)
 	if err != nil {
 		fmt.Println("etcd get conf failed, err: ", err)
 		return
@@ -52,7 +59,7 @@ func main() {
 	confChan := etcd.ConfChan()
 	taillog.InitTailTaskMgr(logEntryConf, confChan)
 
-	go etcd.WatchConf(appConf.Key)
+	go etcd.WatchConf(etcdConfKey)
 
 	ch := make(chan os.Signal, 1)
 	signal.Notify(ch, syscall.SIGINT)
