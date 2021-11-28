@@ -27,6 +27,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.4
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gogo/protobuf v1.3.2 // indirect
+	github.com/google/gopacket v1.1.19 // indirect
 	github.com/google/gops v0.3.22
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/hpcloud/tail v1.0.0

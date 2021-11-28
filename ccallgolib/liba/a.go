@@ -2,7 +2,9 @@ package main
 
 import "C"
 
-func main() {}
+func main() {
+
+}
 
 //export Hello
 func Hello() string {

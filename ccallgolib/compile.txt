@@ -1,5 +1,7 @@
-go build -buildmode=c-shared -o liba.so a.go
+go list -e -export ./...
+
+go build -buildmode=c-shared -o ../liba.so a.go
 gcc -o test test.c liba.so -lpthread
 
-go build -buildmode=c-archive -o liba.a a.go
+go build -buildmode=c-archive -o ../liba.a a.go
 gcc -o test test.c liba.a -lpthread
