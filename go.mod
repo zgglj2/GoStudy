@@ -40,6 +40,7 @@ require (
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/nsqio/go-nsq v1.1.0
+	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/panjf2000/ants v1.3.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
@@ -51,6 +52,7 @@ require (
 	github.com/ugorji/go v1.2.6 // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible
+	github.com/ysrc/yulong-hids v0.4.4 // indirect
 	github.com/yuin/gopher-lua v0.0.0-20210529063254-f4c35e4016d9
 	go.etcd.io/etcd v3.3.27+incompatible // indirect
 	go.uber.org/atomic v1.9.0 // indirect

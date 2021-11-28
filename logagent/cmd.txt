@@ -1,0 +1,6 @@
+
+
+etcd.exe
+etcdctl.exe --endpoints=http://127.0.0.1:2379 put /logagent/collect_config [{\"path\":\"c:/tmp/nginx.log\",\"topic\":\"web_log\"},{\"path\":\"d:/xxx/redis.log\",\"topic\":\"redis_log\"}]
+
+etcdctl.exe --endpoints=http://127.0.0.1:2379 put /logagent/collect_config [{\"path\":\"c:/tmp/nginx.log\",\"topic\":\"web_log\"},{\"path\":\"d:/xxx/redis.log\",\"topic\":\"redis_log\"},{\"path\":\"d:/xxx/kafka.log\",\"topic\":\"kafka_log\"}]

@@ -17,7 +17,7 @@ func main() {
 	}
 	tails, err := tail.TailFile("my.log", config)
 	if err != nil {
-		fmt.Println("tail file fail, err: ", tails)
+		fmt.Println("tail file fail, err: ", err)
 		return
 	}
 	var line *tail.Line
