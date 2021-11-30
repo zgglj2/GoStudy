@@ -59,12 +59,18 @@ func (shlf *SharedLibsFile) parse(data []byte) error {
 		if line != "" && !strings.HasPrefix(line, "#") {
 			shl := NewSharedLibrary()
 			fe := strings.SplitN(line, " ", 2)
+			if len(fe) < 2 {
+				continue
+			}
 			if strings.HasSuffix(fe[0], ":") {
 				shl.tag = fe[0]
 				line = fe[1]
 			}
 
 			fe = strings.SplitN(line, " ", 3)
+			if len(fe) < 3 {
+				continue
+			}
 			shl.library, shl.version = fe[0], fe[1]
 			fe = regexp.MustCompile(`[\\,\\|]`).Split(fe[2], -1)
 			for _, v := range fe {
