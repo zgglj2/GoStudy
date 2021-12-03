@@ -100,6 +100,8 @@ require (
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )
 
+require go.uber.org/goleak v1.1.12
+
 require (
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/andrew-d/lzma v0.0.0-20120628231508-2a7c55cad4a2 // indirect
