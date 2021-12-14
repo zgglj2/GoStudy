@@ -1,0 +1,16 @@
+..\pb\helloworld.pb.go:219:7: undefined: grpc.ClientConnInterface
+..\pb\helloworld.pb.go:223:11: undefined: grpc.SupportPackageIsVersion6
+..\pb\helloworld.pb.go:233:5: undefined: grpc.ClientConnInterface
+..\pb\helloworld.pb.go:236:26: undefined: grpc.ClientConnInterfaceP
+solve:
+go install  -v github.com/golang/protobuf/protoc-gen-go@v1.3.2
+for:
+google.golang.org/grpc v1.26.0
+
+
+go install  -v github.com/golang/protobuf/protoc-gen-go
+for:
+google.golang.org/grpc v1.27.0
+
+
+protoc -I . --go_out=plugins=grpc:. .\helloworld.proto
