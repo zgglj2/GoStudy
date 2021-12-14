@@ -14,3 +14,6 @@ google.golang.org/grpc v1.27.0
 
 
 protoc -I . --go_out=plugins=grpc:. .\helloworld.proto
+
+pip3.exe install grpcio-tools
+python -m grpc_tools.protoc -I . --python_out=..\client\ --grpc_python_out=..\client\ .\helloworld.proto
