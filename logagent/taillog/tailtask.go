@@ -4,6 +4,7 @@ import (
 	"GoStudy/logagent/kafka"
 	"context"
 	"fmt"
+	"strings"
 
 	"github.com/nxadm/tail"
 )
@@ -55,6 +56,10 @@ func (t *TailTask) run() {
 			fmt.Printf("the task for path:%s is stop...\n", t.path)
 			return
 		case line := <-t.instance.Lines:
+			if len(strings.Trim(line.Text, " \r\n")) == 0 {
+				fmt.Printf("line is empty, topic: %v\n", t.topic)
+				continue
+			}
 			kafka.SendToChan(t.topic, line.Text)
 		}
 	}

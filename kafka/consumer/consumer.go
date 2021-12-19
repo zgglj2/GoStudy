@@ -29,7 +29,7 @@ func main() {
 	// 遍历所有分区
 	for partition := range partitionList {
 		//消费者 消费 对应主题的 具体 分区 指定 主题 分区 offset  return 对应分区的对象
-		pc, err := consumer.ConsumePartition("aaa", int32(partition), sarama.OffsetNewest)
+		pc, err := consumer.ConsumePartition("aaa", int32(partition), sarama.OffsetOldest)
 		if err != nil {
 			log.Println(err)
 			return
@@ -43,7 +43,7 @@ func main() {
 		go func(sarama.PartitionConsumer) {
 			defer wg.Done()
 			for msg := range pc.Messages() {
-				fmt.Printf("Partition:%d Offset:%d Key:%v Value:%v", msg.Partition, msg.Offset, msg.Key, msg.Value)
+				fmt.Printf("Partition:%d Offset:%d Key:%v Value:%v\n", msg.Partition, msg.Offset, string(msg.Key), string(msg.Value))
 			}
 		}(pc)
 	}

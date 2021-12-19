@@ -65,7 +65,7 @@ func sendToKafka() {
 				log.Println(err)
 				return
 			}
-			fmt.Printf("pid: %v, offset: %v\n", pid, offset)
+			fmt.Printf("pid: %v, offset: %v，topic: %v, value: %v\n", pid, offset, ld.topic, ld.data)
 		}
 	}
 

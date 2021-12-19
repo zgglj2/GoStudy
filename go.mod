@@ -28,6 +28,7 @@ require (
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/nxadm/tail v1.4.8
+	github.com/olivere/elastic/v7 v7.0.30
 	github.com/panjf2000/ants v1.3.0
 	github.com/robfig/cron v1.2.0
 	github.com/rpcxio/rpcx-examples v1.1.6
@@ -134,7 +135,6 @@ require (
 	github.com/mitchellh/mapstructure v1.4.2 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
-	github.com/olivere/elastic/v7 v7.0.30 // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
@@ -186,6 +186,6 @@ replace github.com/cavaliercoder/go-rpm => ./go-rpm
 
 replace github.com/isbm/go-deb => ./go-deb
 
-replace google.golang.org/grpc => google.golang.org/grpc v1.27.0
+replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
 
 replace github.com/coreos/bbolt => go.etcd.io/bbolt v1.3.6

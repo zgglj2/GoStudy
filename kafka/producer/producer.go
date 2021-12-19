@@ -20,7 +20,8 @@ func main() {
 	// 构建 消息
 	msg := &sarama.ProducerMessage{}
 	msg.Topic = "aaa"
-	msg.Value = sarama.StringEncoder("123")
+	msg.Key = sarama.StringEncoder("keynum")
+	msg.Value = sarama.StringEncoder("123哈哈")
 
 	// 连接 kafka
 	producer, err := sarama.NewSyncProducer([]string{"localhost:9092"}, config)
