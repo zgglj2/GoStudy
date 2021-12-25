@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "GoStudy",
+			"path": ".."
+		},
+		{
+			"name": "bubble",
+			"path": "../dockerfile/bubble"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"dockerfile/bubble": true
+		}
+	}
+}
