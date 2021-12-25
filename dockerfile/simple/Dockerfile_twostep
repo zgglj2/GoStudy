@@ -1,0 +1,22 @@
+FROM golang AS builder
+
+ENV GO111MODULE=on \
+    CGO_ENABLED=0 \
+    GOPROXY=https://goproxy.cn \
+    GOOS=linux \
+    GOARCH=amd64
+
+WORKDIR /build
+
+COPY . .
+
+RUN go build -ldflags '-w -s' -o netapp
+
+FROM scratch
+
+COPY --from=builder /build/netapp /
+
+EXPOSE 8888
+
+# CMD ["/netapp"]
+ENTRYPOINT ["/netapp"]

@@ -1,0 +1,5 @@
+FROM scratch
+
+COPY netapp /netapp
+
+ENTRYPOINT ["/netapp"]
