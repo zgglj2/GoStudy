@@ -12,7 +12,8 @@ require (
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575
 	github.com/coreos/etcd v3.3.27+incompatible
-	github.com/gin-gonic/gin v1.7.4
+	github.com/gin-contrib/zap v0.0.2
+	github.com/gin-gonic/gin v1.7.7
 	github.com/go-ini/ini v1.63.2
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-redis/redis/v8 v8.11.4
@@ -46,7 +47,7 @@ require (
 	go.uber.org/zap v1.19.1
 	golang.org/x/tools v0.1.7
 	google.golang.org/grpc v1.36.0
-	google.golang.org/protobuf v1.26.0
+	google.golang.org/protobuf v1.27.1
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gorm.io/driver/mysql v1.2.1
 	gorm.io/driver/sqlite v1.2.6
@@ -85,7 +86,7 @@ require (
 	github.com/go-ping/ping v0.0.0-20211014180314-6e2b003bffdd // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
-	github.com/go-playground/validator/v10 v10.9.0 // indirect
+	github.com/go-playground/validator/v10 v10.10.0 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
