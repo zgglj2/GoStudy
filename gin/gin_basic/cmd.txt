@@ -1,0 +1,9 @@
+curl http://127.0.0.1:8080/user/glj/abc/def
+
+curl http://127.0.0.1:8080/welcome?name=gyc
+
+http://127.0.0.1:8080/form
+http://127.0.0.1:8080/upload
+http://127.0.0.1:8080/upload_multi
+
+

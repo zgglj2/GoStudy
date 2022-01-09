@@ -1,0 +1,3 @@
+curl http://127.0.0.1:8080/loginJSON -H "content-type:application/json" -d "{\"user\":\"root\",\"password\":\"admin\"} -X POST
+
+curl http://127.0.0.1:8080/login/glj/123
