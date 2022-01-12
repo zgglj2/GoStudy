@@ -25,4 +25,15 @@ func main() {
 
 	str2 := re.ReplaceAllStringFunc(searchIn, f)
 	fmt.Println(str2)
+
+	info := "users:((\"java\",24487,36))"
+	reg := regexp.MustCompile(`users:\(\("(.*?)",(.*?),(.*?)\)`)
+	r := reg.FindSubmatch([]byte(info))
+	for index, item := range r {
+		fmt.Printf("item[%d]: %s\n", index, string(item))
+	}
+	r2 := reg.FindStringSubmatch(info)
+	for index, item := range r2 {
+		fmt.Printf("item[%d]: %s\n", index, string(item))
+	}
 }
