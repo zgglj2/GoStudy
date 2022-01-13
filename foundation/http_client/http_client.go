@@ -73,10 +73,31 @@ func postWithArgs() {
 	}
 	fmt.Println(string(b))
 }
+func addReqHeader() {
+	req, _ := http.NewRequest("GET", "http://www.baidu.com/", nil)
+	req.Header.Set("token", "1234567890")
+	fmt.Println("req.header: ", req.Header)
+	resp, err := (&http.Client{}).Do(req)
+	//resp, err := http.Get(serviceUrl + "/topic/query/false/lsj")
+	if err != nil {
+		fmt.Println("query topic failed", err.Error())
+		return
+	}
+	defer resp.Body.Close()
+
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Printf("get resp failed, err:%v\n", err)
+		return
+	}
+	fmt.Println(string(b))
+}
 func main() {
-	simpleGet()
+	// simpleGet()
 
-	getWithArgs()
+	// getWithArgs()
 
-	postWithArgs()
+	// postWithArgs()
+
+	addReqHeader()
 }

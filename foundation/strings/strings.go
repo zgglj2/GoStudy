@@ -92,4 +92,6 @@ func main() {
 	newSs = strconv.Itoa(an)
 	fmt.Printf("The new string is: %s\n", newSs)
 
+	var str4 string = "Hi, I'm Marc, Marc, Hi."
+	fmt.Println("strings.Replace(\"Marc\", \"glj\"): ", strings.Replace(str4, "Marc", "glj", 1))
 }

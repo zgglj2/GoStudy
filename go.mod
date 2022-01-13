@@ -61,6 +61,7 @@ require (
 	github.com/andrew-d/lzma v0.0.0-20120628231508-2a7c55cad4a2 // indirect
 	github.com/apache/thrift v0.15.0 // indirect
 	github.com/armon/go-metrics v0.3.10 // indirect
+	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394 // indirect
 	github.com/blakesmith/ar v0.0.0-20190502131153-809d4375e1fb // indirect
 	github.com/cenk/backoff v2.2.1+incompatible // indirect
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
@@ -117,6 +118,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/juju/ratelimit v1.0.1 // indirect
 	github.com/julienschmidt/httprouter v1.3.0 // indirect
+	github.com/kardianos/service v1.2.1 // indirect
 	github.com/kavu/go_reuseport v1.5.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
@@ -170,7 +172,7 @@ require (
 	golang.org/x/mod v0.5.1 // indirect
 	golang.org/x/net v0.0.0-20211209124913-491a49abca63 // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20211124211545-fe61309f8881 // indirect
+	golang.org/x/sys v0.0.0-20220111092808-5a964db01320 // indirect
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
