@@ -55,7 +55,7 @@ func main() {
 
 	str, err := CmdExec("dir")
 	if err != nil {
-		fmt.Printf("CmdExec error: ", err) //
+		fmt.Printf("CmdExec error: %s", err) //
 		os.Exit(1)
 	}
 	fmt.Println("dir: ", str)
