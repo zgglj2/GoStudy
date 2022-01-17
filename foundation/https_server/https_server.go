@@ -8,7 +8,7 @@ import (
 )
 
 func f1(w http.ResponseWriter, r *http.Request) {
-	str := "你好"
+	str := fmt.Sprintf("Via: %s", r.Header.Get("Via"))
 	w.Write([]byte(str))
 }
 
@@ -49,5 +49,5 @@ func main() {
 	// http.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
 	// http.HandleFunc("/debug/pprof/trace", pprof.Trace)
 
-	http.ListenAndServeTLS("127.0.0.1:9090", "cert.pem", "key.pem", nil)
+	http.ListenAndServeTLS(":4433", "cert.pem", "key.pem", nil)
 }

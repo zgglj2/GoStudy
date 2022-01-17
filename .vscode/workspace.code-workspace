@@ -7,11 +7,26 @@
 		{
 			"name": "bubble",
 			"path": "../dockerfile/bubble"
+		},
+		{
+			"name": "httpproxy",
+			"path": "../httpproxy"
+		},
+		{
+			"name": "go-deb",
+			"path": "../go-deb"
+		},
+		{
+			"name": "go-rpm",
+			"path": "../go-rpm"
 		}
 	],
 	"settings": {
 		"files.exclude": {
-			"dockerfile/bubble": true
+			"dockerfile/bubble": true,
+			"httpproxy": true,
+			"go-deb": true,
+			"go-rpm": true,
 		}
 	}
 }

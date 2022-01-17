@@ -6,6 +6,7 @@ require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/PaulXu-cn/goeval v0.1.1
 	github.com/Shopify/sarama v1.30.1
+	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394
 	github.com/blanchonvincent/ctxarg v0.0.0-20190726074905-a05d037a0c36
 	github.com/bwmarrin/snowflake v0.3.0
 	github.com/cavaliercoder/go-rpm v0.0.0-20200122174316-8cb9fd9c31a8
@@ -14,6 +15,7 @@ require (
 	github.com/coreos/etcd v3.3.27+incompatible
 	github.com/gin-contrib/zap v0.0.2
 	github.com/gin-gonic/gin v1.7.7
+	github.com/go-httpproxy/httpproxy v0.0.0-20180417134941-6977c68bf38e
 	github.com/go-ini/ini v1.63.2
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-redis/redis/v8 v8.11.4
@@ -25,6 +27,7 @@ require (
 	github.com/isbm/go-deb v0.0.0-20200606113352-45f79b074aa5
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/json-iterator/go v1.1.12
+	github.com/kardianos/service v1.2.1
 	github.com/lxn/walk v0.0.0-20210112085537-c389da54e794
 	github.com/mattn/go-sqlite3 v1.14.9
 	github.com/mitchellh/go-ps v1.0.0
@@ -61,7 +64,6 @@ require (
 	github.com/andrew-d/lzma v0.0.0-20120628231508-2a7c55cad4a2 // indirect
 	github.com/apache/thrift v0.15.0 // indirect
 	github.com/armon/go-metrics v0.3.10 // indirect
-	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394 // indirect
 	github.com/blakesmith/ar v0.0.0-20190502131153-809d4375e1fb // indirect
 	github.com/cenk/backoff v2.2.1+incompatible // indirect
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
@@ -118,7 +120,6 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/juju/ratelimit v1.0.1 // indirect
 	github.com/julienschmidt/httprouter v1.3.0 // indirect
-	github.com/kardianos/service v1.2.1 // indirect
 	github.com/kavu/go_reuseport v1.5.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
@@ -192,3 +193,5 @@ replace github.com/isbm/go-deb => ./go-deb
 replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
 
 replace github.com/coreos/bbolt => go.etcd.io/bbolt v1.3.6
+
+replace github.com/go-httpproxy/httpproxy => ./httpproxy
