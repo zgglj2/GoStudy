@@ -66,13 +66,14 @@ func OnRequest(ctx *httpproxy.Context, req *http.Request) (
 	resp *http.Response) {
 	// Log proxying requests.
 	log.Printf("INFO: Proxy %d %d: %s %s", ctx.SessionNo, ctx.SubSessionNo, req.Method, req.URL.String())
+	req.Header.Add("Via", "go-httpproxy request")
 	return
 }
 
 func OnResponse(ctx *httpproxy.Context, req *http.Request,
 	resp *http.Response) {
 	// Add header "Via: go-httpproxy".
-	resp.Header.Add("Via", "go-httpproxy")
+	resp.Header.Add("Via", "go-httpproxy response")
 }
 
 func main() {
