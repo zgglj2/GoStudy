@@ -65,4 +65,14 @@ func main() {
 			fmt.Printf("%s is of a type(%T) I don’t know how to handle\n", k, v)
 		}
 	}
+
+	b2 := []byte(`[{"Type": "1", "City": "2", "Country": "3"},{"Type": "1", "City": "2", "Country": "3"}]`)
+	var addrs []Address
+	err = json.Unmarshal(b2, &addrs)
+	if err != nil {
+		panic(err)
+	}
+	for index, addr := range addrs {
+		fmt.Printf("index: %d， addr: %#v\n", index, addr)
+	}
 }
