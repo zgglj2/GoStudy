@@ -5,7 +5,10 @@ go 1.17
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/PaulXu-cn/goeval v0.1.1
+	github.com/Shopify/go-lua v0.0.0-20220120202609-9ab779377807
 	github.com/Shopify/sarama v1.30.1
+	github.com/aarzilli/golua v0.0.0-20210507130708-11106aa57765
+	github.com/ambrevar/golua v0.0.0-20170904135241-97ce517e7a1f
 	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394
 	github.com/blanchonvincent/ctxarg v0.0.0-20190726074905-a05d037a0c36
 	github.com/bwmarrin/snowflake v0.3.0
@@ -43,6 +46,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/smallnest/rpcx v1.6.11
 	github.com/sony/sonyflake v1.0.0
+	github.com/stevedonovan/luar v0.0.0-20170518170841-22d247e53660
 	github.com/vmihailenco/msgpack v4.0.4+incompatible
 	github.com/yuin/gopher-lua v0.0.0-20210529063254-f4c35e4016d9
 	go.etcd.io/etcd v3.3.27+incompatible
