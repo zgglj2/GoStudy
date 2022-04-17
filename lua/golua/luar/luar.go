@@ -489,28 +489,55 @@ print(os == nil)
 	// true
 }
 
+func ExampleFuncCall() {
+	const test = `
+	array ={"array", "of", "paths"}
+	SetWatchPath(array)	
+`
+
+	SetWatchPath := func(path []string) {
+		for _, v := range path {
+			fmt.Println(v)
+		}
+		// fmt.Println(path)
+	}
+
+	L := luar.Init()
+	defer L.Close()
+
+	luar.Register(L, "", luar.Map{
+		"print":        fmt.Println,
+		"SetWatchPath": SetWatchPath,
+	})
+
+	L.DoString(test)
+	// Output:
+	// 17 10 foo
+}
 func main() {
-	Example()
-	fmt.Println("-------------------")
-	Example_pointers()
-	fmt.Println("-------------------")
-	Example_slices()
-	fmt.Println("-------------------")
-	ExampleGoToLua()
-	fmt.Println("-------------------")
-	ExampleInit()
-	fmt.Println("-------------------")
-	ExampleLuaObject_Call()
-	fmt.Println("-------------------")
-	ExampleMap()
-	fmt.Println("-------------------")
-	ExampleMakeChan()
-	fmt.Println("-------------------")
-	ExampleNewLuaObject()
-	fmt.Println("-------------------")
-	ExampleNewLuaObjectFromValue()
-	fmt.Println("-------------------")
-	ExampleLuaTableIter_Next()
-	fmt.Println("-------------------")
-	ExampleRegister_sandbox()
+	// Example()
+	// fmt.Println("-------------------")
+	// Example_pointers()
+	// fmt.Println("-------------------")
+	// Example_slices()
+	// fmt.Println("-------------------")
+	// ExampleGoToLua()
+	// fmt.Println("-------------------")
+	// ExampleInit()
+	// fmt.Println("-------------------")
+	// ExampleLuaObject_Call()
+	// fmt.Println("-------------------")
+	// ExampleMap()
+	// fmt.Println("-------------------")
+	// ExampleMakeChan()
+	// fmt.Println("-------------------")
+	// ExampleNewLuaObject()
+	// fmt.Println("-------------------")
+	// ExampleNewLuaObjectFromValue()
+	// fmt.Println("-------------------")
+	// ExampleLuaTableIter_Next()
+	// fmt.Println("-------------------")
+	// ExampleRegister_sandbox()
+	// fmt.Println("-------------------")
+	ExampleFuncCall()
 }
