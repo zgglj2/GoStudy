@@ -48,7 +48,7 @@ require (
 	github.com/sony/sonyflake v1.0.0
 	github.com/stevedonovan/luar v0.0.0-20170518170841-22d247e53660
 	github.com/vmihailenco/msgpack v4.0.4+incompatible
-	github.com/yuin/gopher-lua v0.0.0-20210529063254-f4c35e4016d9
+	github.com/yuin/gopher-lua v0.0.0-20220413183635-c841877397d8
 	go.etcd.io/etcd v3.3.27+incompatible
 	go.uber.org/goleak v1.1.12
 	go.uber.org/zap v1.19.1
@@ -187,6 +187,7 @@ require (
 	gopkg.in/fsnotify.v1 v1.4.7 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	layeh.com/gopher-luar v1.0.10 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 

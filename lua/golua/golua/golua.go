@@ -35,4 +35,5 @@ func main() {
 	// excutes go function in lua
 	L.Register("adder", adder)
 	L.DoString("print(adder(2, 2))")
+
 }

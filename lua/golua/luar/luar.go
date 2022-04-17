@@ -48,24 +48,35 @@ print(user.Name, user.Age)
 	// Dolly 46
 }
 
+type Ref struct {
+	Index  int
+	Number *int
+	Title  *string
+}
+
+func (r Ref) GetNumber() int {
+	return *r.Number
+}
+
+func (r *Ref) GetTitle() string {
+	return *r.Title
+}
+
 // Pointers to structs and structs within pointers are automatically dereferenced.
 func Example_pointers() {
 	const test = `
-local t = newRef()
+local t = newRef(10, 'foo')
 print(t.Index, t.Number, t.Title)
+print(t.GetNumber())
+print(t:GetNumber())                -- 10
+print(t:GetTitle())                 -- foo
 `
 
-	type Ref struct {
-		Index  int
-		Number *int
-		Title  *string
-	}
-
-	newRef := func() *Ref {
+	newRef := func(number int, title string) *Ref {
 		n := new(int)
-		*n = 10
+		*n = number
 		t := new(string)
-		*t = "foo"
+		*t = title
 		return &Ref{Index: 17, Number: n, Title: t}
 	}
 
