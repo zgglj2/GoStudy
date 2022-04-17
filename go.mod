@@ -59,6 +59,7 @@ require (
 	gorm.io/driver/mysql v1.2.1
 	gorm.io/driver/sqlite v1.2.6
 	gorm.io/gorm v1.22.4
+	layeh.com/gopher-luar v1.0.10
 )
 
 require (
@@ -187,7 +188,6 @@ require (
 	gopkg.in/fsnotify.v1 v1.4.7 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	layeh.com/gopher-luar v1.0.10 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
