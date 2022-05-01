@@ -27,6 +27,7 @@ func trace(msg string) func() {
 }
 func main() {
 	defer fmt.Println("world")
+	defer fmt.Println("123")
 	fmt.Println("hello")
 
 	fmt.Println("counting")

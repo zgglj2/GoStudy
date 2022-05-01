@@ -6,10 +6,12 @@ import (
 
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/disk"
-	"github.com/shirou/gopsutil/host"
+
+	// "github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/net"
+	"github.com/shirou/gopsutil/v3/host"
 )
 
 // cpu info
@@ -42,6 +44,11 @@ func getMemInfo() {
 func getHostInfo() {
 	hInfo, _ := host.Info()
 	fmt.Printf("host info:%v uptime:%v boottime:%v\n", hInfo, hInfo.Uptime, hInfo.BootTime)
+	KernelVersion, _ := host.KernelVersion()
+	Platform, PlatformFamily, PlatformVersion, _ := host.PlatformInformation()
+	Arch, _ := host.KernelArch()
+
+	fmt.Printf("KernelVersion:%v Platform:%v PlatformFamily:%v PlatformVersion:%v Arch:%v\n", KernelVersion, Platform, PlatformFamily, PlatformVersion, Arch)
 }
 
 // disk info
