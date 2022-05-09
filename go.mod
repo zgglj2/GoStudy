@@ -12,7 +12,7 @@ require (
 	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394
 	github.com/blanchonvincent/ctxarg v0.0.0-20190726074905-a05d037a0c36
 	github.com/bwmarrin/snowflake v0.3.0
-	github.com/cavaliercoder/go-rpm v0.0.0-20200122174316-8cb9fd9c31a8
+	github.com/cavaliercoder/go-rpm v0.0.0-00010101000000-000000000000
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575
 	github.com/coreos/etcd v3.3.27+incompatible
@@ -26,6 +26,7 @@ require (
 	github.com/golang/protobuf v1.5.2
 	github.com/google/gopacket v1.1.19
 	github.com/google/gops v0.3.22
+	github.com/hashicorp/golang-lru v0.5.4
 	github.com/hpcloud/tail v1.0.0
 	github.com/isbm/go-deb v0.0.0-20200606113352-45f79b074aa5
 	github.com/jmoiron/sqlx v1.3.4
@@ -43,6 +44,7 @@ require (
 	github.com/sassoftware/go-rpmutils v0.2.0
 	github.com/schollz/progressbar/v3 v3.8.3
 	github.com/shirou/gopsutil v3.21.10+incompatible
+	github.com/shirou/gopsutil/v3 v3.22.3
 	github.com/sirupsen/logrus v1.8.1
 	github.com/smallnest/rpcx v1.6.11
 	github.com/sony/sonyflake v1.0.0
@@ -55,6 +57,7 @@ require (
 	golang.org/x/tools v0.1.7
 	google.golang.org/grpc v1.36.0
 	google.golang.org/protobuf v1.27.1
+	gopkg.in/fsnotify.v1 v1.4.7
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gorm.io/driver/mysql v1.2.1
 	gorm.io/driver/sqlite v1.2.6
@@ -112,7 +115,6 @@ require (
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-rootcerts v1.0.2 // indirect
 	github.com/hashicorp/go-uuid v1.0.2 // indirect
-	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/hashicorp/serf v0.9.6 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
@@ -156,7 +158,6 @@ require (
 	github.com/rs/cors v1.8.0 // indirect
 	github.com/rubyist/circuitbreaker v2.2.1+incompatible // indirect
 	github.com/samuel/go-zookeeper v0.0.0-20201211165307-7117e9ea2414 // indirect
-	github.com/shirou/gopsutil/v3 v3.22.3 // indirect
 	github.com/smallnest/quick v0.0.0-20210406061658-4bf95e372fbd // indirect
 	github.com/soheilhy/cmux v0.1.5 // indirect
 	github.com/templexxx/cpufeat v0.0.0-20180724012125-cef66df7f161 // indirect
@@ -189,7 +190,6 @@ require (
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20200806141610-86f49bd18e98 // indirect
 	gopkg.in/Knetic/govaluate.v3 v3.0.0 // indirect
-	gopkg.in/fsnotify.v1 v1.4.7 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
