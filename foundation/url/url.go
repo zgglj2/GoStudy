@@ -13,6 +13,4 @@ func main() {
 		fmt.Printf("parse url requestUrl failed, err:%v\n", err)
 	}
 	fmt.Printf("u: %#v\n", u)
-	data := u.Values{}
-	fmt.Printf("data: %#v\n", data)
 }
