@@ -1,7 +1,10 @@
 package main
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"fmt"
+	"io"
 	"log"
 	"sort"
 	"strconv"
@@ -514,6 +517,55 @@ func ExampleFuncCall() {
 	// Output:
 	// 17 10 foo
 }
+func md5V(str string) string {
+	h := md5.New()
+	h.Write([]byte(str))
+	return hex.EncodeToString(h.Sum(nil))
+}
+
+func md5V2(str string) string {
+	data := []byte(str)
+	has := md5.Sum(data)
+	md5str := fmt.Sprintf("%x", has)
+	return md5str
+}
+
+func md5V3(str string) string {
+	w := md5.New()
+	io.WriteString(w, str)
+	md5str := fmt.Sprintf("%x", w.Sum(nil))
+	return md5str
+}
+
+func ExampleFuncCall2() {
+	const test = `
+	str = "MD5testing"
+	data = md5New(str)
+	md5str = fmtSprintf("%x", data)
+	fmtPrintln(md5str)
+
+	fmtPrintln(md5V(str))
+	fmtPrintln(md5V2(str))
+	fmtPrintln(md5V3(str))
+
+
+`
+
+	L := luar.Init()
+	defer L.Close()
+
+	luar.Register(L, "", luar.Map{
+		"fmtPrintln": fmt.Println,
+		"fmtSprintf": fmt.Sprintf,
+		"md5New":     md5.New,
+		"md5Sum":     md5.Sum,
+		"md5V":       md5V,
+		"md5V2":      md5V2,
+		"md5V3":      md5V3,
+	})
+
+	L.DoString(test)
+}
 func main() {
 	// Example()
 	// fmt.Println("-------------------")
@@ -539,5 +591,7 @@ func main() {
 	// fmt.Println("-------------------")
 	// ExampleRegister_sandbox()
 	// fmt.Println("-------------------")
-	ExampleFuncCall()
+	// ExampleFuncCall()
+	// fmt.Println("-------------------")
+	ExampleFuncCall2()
 }

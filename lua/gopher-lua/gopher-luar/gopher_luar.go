@@ -1,7 +1,10 @@
 package main
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"fmt"
+	"io"
 	"strconv"
 
 	lua "github.com/yuin/gopher-lua"
@@ -182,15 +185,62 @@ end
 	// 2 900
 }
 
+func md5V(str string) string {
+	h := md5.New()
+	h.Write([]byte(str))
+	return hex.EncodeToString(h.Sum(nil))
+}
+
+func md5V2(str string) string {
+	data := []byte(str)
+	has := md5.Sum(data)
+	md5str := fmt.Sprintf("%x", has)
+	return md5str
+}
+
+func md5V3(str string) string {
+	w := md5.New()
+	io.WriteString(w, str)
+	md5str := fmt.Sprintf("%x", w.Sum(nil))
+	return md5str
+}
+func ExampleFuncCall2() {
+	const test = `
+	str = "MD5testing"
+	w = md5New(str)
+	ioWriteString(w, str)
+	md5str = fmtSprintf("%x", w.Sum(nil))
+	fmtPrintln(md5str)
+
+	fmtPrintln(md5V(str))
+	fmtPrintln(md5V2(str))
+	fmtPrintln(md5V3(str))
+`
+
+	L := lua.NewState()
+	defer L.Close()
+	L.SetGlobal("fmtPrintln", luar.New(L, fmt.Println))
+	L.SetGlobal("fmtSprintf", luar.New(L, fmt.Sprintf))
+	L.SetGlobal("ioWriteString", luar.New(L, io.WriteString))
+	L.SetGlobal("md5New", luar.New(L, fmt.Println))
+	L.SetGlobal("md5Sum", luar.New(L, md5.New))
+	L.SetGlobal("md5V", luar.New(L, md5V))
+	L.SetGlobal("md5V2", luar.New(L, md5V2))
+	L.SetGlobal("md5V3", luar.New(L, md5V3))
+
+	L.DoString(test)
+}
 func main() {
-	Example_basic()
-	fmt.Println("-------------------")
-	Example()
-	fmt.Println("-------------------")
-	Example_pointers()
-	fmt.Println("-------------------")
-	Example_slices()
-	fmt.Println("-------------------")
-	ExampleInit()
+	// Example_basic()
+	// fmt.Println("-------------------")
+	// Example()
+	// fmt.Println("-------------------")
+	// Example_pointers()
+	// fmt.Println("-------------------")
+	// Example_slices()
+	// fmt.Println("-------------------")
+	// ExampleInit()
+	// fmt.Println("-------------------")
+	ExampleFuncCall2()
 	fmt.Println("-------------------")
 }

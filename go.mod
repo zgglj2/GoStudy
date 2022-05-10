@@ -48,6 +48,7 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/smallnest/rpcx v1.6.11
 	github.com/sony/sonyflake v1.0.0
+	github.com/spf13/afero v1.8.2
 	github.com/stevedonovan/luar v0.0.0-20170518170841-22d247e53660
 	github.com/vmihailenco/msgpack v4.0.4+incompatible
 	github.com/yuin/gopher-lua v0.0.0-20220413183635-c841877397d8
@@ -188,7 +189,7 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20200806141610-86f49bd18e98 // indirect
+	google.golang.org/genproto v0.0.0-20210226172003-ab064af71705 // indirect
 	gopkg.in/Knetic/govaluate.v3 v3.0.0 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
