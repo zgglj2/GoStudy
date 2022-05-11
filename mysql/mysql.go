@@ -284,6 +284,7 @@ func queryMultiRowDemoSqlx() {
 	}
 	fmt.Printf("userlist: %#v\n", uselist)
 }
+
 func main() {
 	err := initDB() // 调用输出化数据库的函数
 	if err != nil {

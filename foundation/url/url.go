@@ -13,4 +13,6 @@ func main() {
 		fmt.Printf("parse url requestUrl failed, err:%v\n", err)
 	}
 	fmt.Printf("u: %#v\n", u)
+	fmt.Printf("name: %s\n", u.Query().Get("name"))
+	fmt.Printf("age: %s\n", u.Query().Get("age"))
 }
