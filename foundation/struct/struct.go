@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"strings"
+	"unsafe"
 )
 
 type Vertex struct {
@@ -27,6 +28,24 @@ type struct1 struct {
 type Person struct {
 	firstName string
 	lastName  string
+}
+
+type SizeStruct1 struct {
+	a bool
+}
+
+type SizeStruct2 struct {
+	a bool
+	b int16
+}
+type SizeStruct3 struct {
+	a bool
+	b int64
+	c int16
+}
+type SizeStruct4 struct {
+	b int64
+	a bool
 }
 
 func upPerson(p *Person) {
@@ -83,4 +102,13 @@ func main() {
 	pers3 := &Person{"Chris", "Woodward"}
 	upPerson(pers3)
 	fmt.Printf("The name of the person is %s %s\n", pers3.firstName, pers3.lastName)
+
+	ss1 := SizeStruct1{}
+	fmt.Printf("The size of SizeStruct1 is: %d\n", unsafe.Sizeof(ss1)) // 1
+	ss2 := SizeStruct2{}
+	fmt.Printf("The size of SizeStruct2 is: %d\n", unsafe.Sizeof(ss2)) // 4
+	ss3 := SizeStruct3{}
+	fmt.Printf("The size of SizeStruct3 is: %d\n", unsafe.Sizeof(ss3)) // 24
+	ss4 := SizeStruct4{}
+	fmt.Printf("The size of SizeStruct4 is: %d\n", unsafe.Sizeof(ss4)) // 16
 }

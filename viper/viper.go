@@ -3,7 +3,11 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )
 
@@ -83,8 +87,21 @@ func WriteYAMLToFile() {
 	// viper.SafeWriteConfigAs("/path/to/my/.other_config")
 }
 
+func WatchConfigFile() {
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		fmt.Println("Config file changed:", e.Name)
+	})
+	viper.WatchConfig()
+}
+
 func main() {
 	GetYAMLFromString()
 	GetYAMLFromFile()
 	WriteYAMLToFile()
+	WatchConfigFile()
+	ch := make(chan os.Signal, 1)
+	signal.Notify(ch, syscall.SIGINT)
+	<-ch
 }
