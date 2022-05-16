@@ -158,6 +158,108 @@ func SliceGrowing() {
 	}
 }
 
+func SliceDelete() {
+	slice1 := []int{1, 2, 3, 4, 5}
+	var x int
+	// 删除最后一个元素
+	x, slice1 = slice1[len(slice1)-1], slice1[:len(slice1)-1]
+	fmt.Println(x, slice1, len(slice1), cap(slice1))
+	// 5 [1 2 3 4] 4 5
+
+	// 删除第2个元素
+	slice1 = append(slice1[:2], slice1[3:]...)
+	fmt.Println(slice1, len(slice1), cap(slice1))
+	// [1 2 4] 3 5
+}
+
+func SliceSubstr() {
+	slice1 := []int{1, 2, 3, 4, 5}
+	slice2 := slice1[:]
+	// 截取 slice[left:right:max]
+	// left：省略默认0
+	// right：省略默认len(slice1)
+	// max: 省略默认len(slice1)
+	// len = right-left+1
+	// cap = max-left
+	fmt.Println(slice2, len(slice2), cap(slice2))
+	// 1 2 3 4 5] 5 5
+	slice3 := slice1[1:]
+	fmt.Println(slice3, len(slice3), cap(slice3))
+	// [2 3 4 5] 4 4
+	slice4 := slice1[:2]
+	fmt.Println(slice4, len(slice4), cap(slice4))
+	// [1 2] 2 5
+	slice5 := slice1[1:2]
+	fmt.Println(slice5, len(slice5), cap(slice5))
+	// [2] 1 4
+	slice6 := slice1[:2:5]
+	fmt.Println(slice6, len(slice6), cap(slice6))
+	// [1 2] 2 5
+	slice7 := slice1[1:2:2]
+	fmt.Println(slice7, len(slice7), cap(slice7))
+	// [2] 1 1
+}
+
+func SliceTravel() {
+	slice1 := []int{1, 2, 3, 4}
+	for i := 0; i < len(slice1); i++ {
+		fmt.Println(slice1[i])
+	}
+	for idx, e := range slice1 {
+		fmt.Println(idx, e)
+	}
+	for _, e := range slice1 {
+		fmt.Println(e)
+	}
+}
+
+func SliceReverse() {
+	a := []int{1, 2, 3, 4, 5}
+	for left, right := 0, len(a)-1; left < right; left, right = left+1, right-1 {
+		a[left], a[right] = a[right], a[left]
+	}
+	fmt.Println(a, len(a), cap(a))
+	// [5 4 3 2 1] 5 5
+}
+
+func SliceDeepCopy() {
+	slice1 := []int{1, 2, 3, 4, 5}
+	slice2 := make([]int, 5, 5)
+	// 深拷贝
+	copy(slice2, slice1)
+	fmt.Println(slice1, len(slice1), cap(slice1))
+	// [1 2 3 4 5] 5 5
+	fmt.Println(slice2, len(slice2), cap(slice2))
+	// [1 2 3 4 5] 5 5
+	slice1[1] = 100
+	fmt.Println(slice1, len(slice1), cap(slice1))
+	// [1 100 3 4 5] 5 5
+	fmt.Println(slice2, len(slice2), cap(slice2))
+	// [1 2 3 4 5] 5 5
+}
+
+func SliceShadowCopy() {
+	slice1 := []int{1, 2, 3, 4, 5}
+	// 浅拷贝（注意 := 对于引用类型是浅拷贝，对于值类型是深拷贝）
+	slice2 := slice1
+	fmt.Printf("%p", slice1) // 0xc00001c120
+	fmt.Printf("%p", slice2) // 0xc00001c120
+	// 同时改变两个数组，这时就是浅拷贝，未扩容时，修改 slice1 的元素之后，slice2 的元素也会跟着修改
+	slice1[0] = 10
+	fmt.Println(slice1, len(slice1), cap(slice1))
+	// [10 2 3 4 5] 5 5
+	fmt.Println(slice2, len(slice2), cap(slice2))
+	// [10 2 3 4 5] 5 5
+	// 注意下：扩容后，slice1和slice2不再指向同一个数组，修改 slice1 的元素之后，slice2 的元素不会被修改了
+	slice1 = append(slice1, 5, 6, 7, 8)
+	slice1[0] = 11
+	// 这里可以发现，slice1[0] 被修改为了 11, slice1[0] 还是10
+	fmt.Println(slice1, len(slice1), cap(slice1))
+	// [11 2 3 4 5 5 6 7 8] 9 10
+	fmt.Println(slice2, len(slice2), cap(slice2))
+	// [10 2 3 4 5] 5 5
+}
+
 func main() {
 	var numbers1 = make([]int, 3, 5)
 
@@ -245,6 +347,12 @@ func main() {
 	SliceConcurrencySafeByChanel()
 	SliceInit()
 	SliceGrowing()
+	SliceDelete()
+	SliceSubstr()
+	SliceTravel()
+	SliceReverse()
+	SliceDeepCopy()
+	SliceShadowCopy()
 }
 
 func printSlice(x []int) {
