@@ -5,6 +5,10 @@ import (
 	"sort"
 )
 
+func ModifyMap(m map[string]string) {
+	m["one"] = "one"
+}
+
 func main() {
 	countryCapitalMap := make(map[string]string)
 
@@ -12,6 +16,9 @@ func main() {
 	countryCapitalMap["Italy"] = "罗马"
 	countryCapitalMap["Japan"] = "东京"
 	countryCapitalMap["India "] = "新德里"
+	fmt.Println("原始的 map 大小是", len(countryCapitalMap))
+	ModifyMap(countryCapitalMap)
+	fmt.Println("修改后的 map 大小是", len(countryCapitalMap))
 
 	for country := range countryCapitalMap {
 		fmt.Println(country, "首都是", countryCapitalMap[country])
