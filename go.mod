@@ -1,6 +1,6 @@
 module GoStudy
 
-go 1.17
+go 1.18
 
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
@@ -16,6 +16,7 @@ require (
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575
 	github.com/coreos/etcd v3.3.27+incompatible
+	github.com/fsnotify/fsnotify v1.5.4
 	github.com/gin-contrib/zap v0.0.2
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-httpproxy/httpproxy v0.0.0-20180417134941-6977c68bf38e
@@ -38,6 +39,7 @@ require (
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/nxadm/tail v1.4.8
 	github.com/olivere/elastic/v7 v7.0.30
+	github.com/orca-zhang/ecache v1.1.1
 	github.com/panjf2000/ants v1.3.0
 	github.com/robfig/cron v1.2.0
 	github.com/rpcxio/rpcx-examples v1.1.6
@@ -49,6 +51,7 @@ require (
 	github.com/smallnest/rpcx v1.6.11
 	github.com/sony/sonyflake v1.0.0
 	github.com/spf13/afero v1.8.2
+	github.com/spf13/viper v1.11.0
 	github.com/stevedonovan/luar v0.0.0-20170518170841-22d247e53660
 	github.com/vmihailenco/msgpack v4.0.4+incompatible
 	github.com/yuin/gopher-lua v0.0.0-20220413183635-c841877397d8
@@ -92,8 +95,6 @@ require (
 	github.com/edwingeng/doublejump v0.0.0-20210724020454-c82f1bcb3280 // indirect
 	github.com/facebookgo/clock v0.0.0-20150410010913-600d898af40a // indirect
 	github.com/fatih/color v1.13.0 // indirect
-	github.com/fsnotify/fsnotify v1.5.4 // indirect
-	github.com/genuinetools/pkg v0.0.0-20180717194616-e057fa50f234 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-ping/ping v0.0.0-20211014180314-6e2b003bffdd // indirect
@@ -124,7 +125,6 @@ require (
 	github.com/jcmturner/gofork v1.0.0 // indirect
 	github.com/jcmturner/gokrb5/v8 v8.4.2 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
-	github.com/jessfraz/dockfmt v0.3.3 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
 	github.com/jonboulle/clockwork v0.2.2 // indirect
@@ -150,12 +150,10 @@ require (
 	github.com/mitchellh/colorstring v0.0.0-20190213212951-d06e56a500db // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
-	github.com/moby/buildkit v0.0.0-20180717184648-628681f8e4aa // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
-	github.com/orca-zhang/ecache v1.1.1 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
@@ -172,7 +170,6 @@ require (
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/spf13/viper v1.11.0 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/templexxx/cpufeat v0.0.0-20180724012125-cef66df7f161 // indirect
 	github.com/templexxx/xor v0.0.0-20191217153810-f85b25db303b // indirect
