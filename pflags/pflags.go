@@ -7,38 +7,6 @@ import (
 	flag "github.com/spf13/pflag"
 )
 
-type Celsius float64
-type Fahrenheit float64
-
-const (
-	AbsoluteZeroC Celsius = -273.15
-	FreezingC     Celsius = 0
-	BoilingC      Celsius = 100
-)
-
-func CToF(c Celsius) Fahrenheit { return Fahrenheit(c*9/5 + 32) }
-
-func FToC(f Fahrenheit) Celsius { return Celsius((f - 32) * 5 / 9) }
-
-func (c Celsius) String() string { return fmt.Sprintf("%g°C", c) }
-
-type celsiusFlag struct{ Celsius }
-
-func (f *celsiusFlag) Set(s string) error {
-	var unit string
-	var value float64
-	fmt.Sscanf(s, "%f%s", &value, &unit) // no error check needed
-	switch unit {
-	case "C", "°C":
-		f.Celsius = Celsius(value)
-		return nil
-	case "F", "°F":
-		f.Celsius = FToC(Fahrenheit(value))
-		return nil
-	}
-	return fmt.Errorf("invalid temperature %q", s)
-}
-
 func main() {
 	username := flag.StringP("username", "u", "", "用户名,默认为空")
 	password := flag.StringP("password", "p", "", "密码,默认为空")
