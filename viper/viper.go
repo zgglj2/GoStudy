@@ -2,12 +2,14 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
 
 	"github.com/fsnotify/fsnotify"
+	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 )
 
@@ -97,6 +99,27 @@ func EnvExample() {
 	fmt.Println(id)
 }
 
+func BindPflagsExample() {
+	pflag.IntP("flagname", "f", 1234, "help message for flagname")
+
+	pflag.Parse()
+	viper.BindPFlags(pflag.CommandLine)
+
+	i := viper.GetInt("flagname") // retrieve values from viper instead of pflag
+	fmt.Println(i)
+}
+
+func BindPflagsExample2() {
+	flag.String("username", "ggg", "help message for username")
+
+	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
+	pflag.Parse()
+	viper.BindPFlags(pflag.CommandLine)
+
+	u := viper.GetString("username") // retrieve values from viper instead of pflag
+	fmt.Println(u)
+}
+
 func WatchConfigFile() {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
@@ -107,11 +130,106 @@ func WatchConfigFile() {
 	viper.WatchConfig()
 }
 
+type myFlag struct{}
+
+func (f myFlag) HasChanged() bool    { return false }
+func (f myFlag) Name() string        { return "my-flag-name" }
+func (f myFlag) ValueString() string { return "my-flag-value" }
+func (f myFlag) ValueType() string   { return "string" }
+
+func FlagInterfaceExample() {
+	viper.BindFlagValue("my-flag-name", myFlag{})
+
+	u := viper.GetString("my-flag-name")
+	fmt.Println(u)
+}
+
+func GetNestedJsonKey() {
+	viper.SetConfigName("config3")
+	viper.AddConfigPath(".")
+	if err := viper.ReadInConfig(); err != nil {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			// Config file not found; ignore error if desired
+			fmt.Println("Config file not found")
+		} else {
+			// Config file was found but another error was produced
+			fmt.Printf("Config file found but error: %s", err)
+		}
+	}
+
+	fmt.Printf("host: %v\n", viper.GetString("datastore.metric.host")) // "127.0.0.1"
+	fmt.Printf("port: %v\n", viper.GetInt("datastore.metric.port"))    // 3099
+	fmt.Printf("host port0: %v\n", viper.GetString("host.ports.0"))    // 5799
+	fmt.Printf("host port1: %v\n", viper.GetString("host.ports.1"))    // 6029
+}
+
+type Cache struct {
+	MaxItems int
+	ItemSize int
+}
+
+func NewCache(v *viper.Viper) *Cache {
+	return &Cache{
+		MaxItems: v.GetInt("max-items"),
+		ItemSize: v.GetInt("item-size"),
+	}
+}
+
+func GetSubConfig() {
+	viper.SetConfigName("config4")
+	viper.AddConfigPath(".")
+	if err := viper.ReadInConfig(); err != nil {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			// Config file not found; ignore error if desired
+			fmt.Println("Config file not found")
+		} else {
+			// Config file was found but another error was produced
+			fmt.Printf("Config file found but error: %s", err)
+		}
+	}
+	cache1Config := viper.Sub("cache.cache1")
+	if cache1Config == nil { // Sub returns nil if the key cannot be found
+		panic("cache configuration not found")
+	}
+
+	cache1 := NewCache(cache1Config)
+	fmt.Printf("cache1: %v\n", cache1)
+}
+
+func UnmarshalExample() {
+	v := viper.NewWithOptions(viper.KeyDelimiter("::"))
+
+	v.SetDefault("chart::values", map[string]interface{}{
+		"ingress": map[string]interface{}{
+			"annotations": map[string]interface{}{
+				"traefik.frontend.rule.type":                 "PathPrefix",
+				"traefik.ingress.kubernetes.io/ssl-redirect": "true",
+			},
+		},
+	})
+
+	type config struct {
+		Chart struct {
+			Values map[string]interface{}
+		}
+	}
+
+	var C config
+
+	v.Unmarshal(&C)
+	fmt.Printf("%+v\n", C)
+}
 func main() {
 	GetYAMLFromString()
 	GetYAMLFromFile()
 	WriteYAMLToFile()
 	EnvExample()
+	BindPflagsExample()
+	BindPflagsExample2()
+	FlagInterfaceExample()
+	GetNestedJsonKey()
+	GetSubConfig()
+	UnmarshalExample()
 	WatchConfigFile()
 	ch := make(chan os.Signal, 1)
 	signal.Notify(ch, syscall.SIGINT)
