@@ -87,11 +87,22 @@ func WriteYAMLToFile() {
 	// viper.SafeWriteConfigAs("/path/to/my/.other_config")
 }
 
+func EnvExample() {
+	viper.SetEnvPrefix("spf") // will be uppercased automatically
+	viper.BindEnv("id")
+
+	os.Setenv("SPF_ID", "13") // typically done outside of the app
+
+	id := viper.Get("id") // 13
+	fmt.Println(id)
+}
+
 func WatchConfigFile() {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
 	viper.OnConfigChange(func(e fsnotify.Event) {
 		fmt.Println("Config file changed:", e.Name)
+		fmt.Println("Config file op:", e.Op)
 	})
 	viper.WatchConfig()
 }
@@ -100,6 +111,7 @@ func main() {
 	GetYAMLFromString()
 	GetYAMLFromFile()
 	WriteYAMLToFile()
+	EnvExample()
 	WatchConfigFile()
 	ch := make(chan os.Signal, 1)
 	signal.Notify(ch, syscall.SIGINT)

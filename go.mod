@@ -8,6 +8,7 @@ require (
 	github.com/Shopify/go-lua v0.0.0-20220120202609-9ab779377807
 	github.com/Shopify/sarama v1.30.1
 	github.com/aarzilli/golua v0.0.0-20210507130708-11106aa57765
+	github.com/allegro/bigcache v1.2.1
 	github.com/ambrevar/golua v0.0.0-20170904135241-97ce517e7a1f
 	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394
 	github.com/blanchonvincent/ctxarg v0.0.0-20190726074905-a05d037a0c36
@@ -15,6 +16,7 @@ require (
 	github.com/cavaliercoder/go-rpm v0.0.0-00010101000000-000000000000
 	github.com/cheggaaa/pb/v3 v3.0.8
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575
+	github.com/coocood/freecache v1.2.1
 	github.com/coreos/etcd v3.3.27+incompatible
 	github.com/fsnotify/fsnotify v1.5.4
 	github.com/gin-contrib/zap v0.0.2
@@ -51,6 +53,7 @@ require (
 	github.com/smallnest/rpcx v1.6.11
 	github.com/sony/sonyflake v1.0.0
 	github.com/spf13/afero v1.8.2
+	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.11.0
 	github.com/stevedonovan/luar v0.0.0-20170518170841-22d247e53660
 	github.com/vmihailenco/msgpack v4.0.4+incompatible
@@ -73,7 +76,6 @@ require (
 	github.com/DataDog/zstd v1.4.8 // indirect
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/VividCortex/ewma v1.2.0 // indirect
-	github.com/allegro/bigcache v1.2.1 // indirect
 	github.com/andrew-d/lzma v0.0.0-20120628231508-2a7c55cad4a2 // indirect
 	github.com/apache/thrift v0.15.0 // indirect
 	github.com/armon/go-metrics v0.3.10 // indirect
@@ -82,7 +84,6 @@ require (
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cheekybits/genny v1.0.0 // indirect
-	github.com/coocood/freecache v1.2.1 // indirect
 	github.com/coreos/bbolt v0.0.0-00010101000000-000000000000 // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
@@ -171,7 +172,6 @@ require (
 	github.com/soheilhy/cmux v0.1.5 // indirect
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/templexxx/cpufeat v0.0.0-20180724012125-cef66df7f161 // indirect
 	github.com/templexxx/xor v0.0.0-20191217153810-f85b25db303b // indirect
