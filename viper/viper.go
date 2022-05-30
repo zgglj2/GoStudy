@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
@@ -11,6 +12,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"gopkg.in/yaml.v3"
 )
 
 func GetYAMLFromString() {
@@ -219,6 +221,29 @@ func UnmarshalExample() {
 	v.Unmarshal(&C)
 	fmt.Printf("%+v\n", C)
 }
+
+func yamlStringSettings() string {
+	c := viper.AllSettings()
+	bs, err := yaml.Marshal(c)
+	if err != nil {
+		fmt.Printf("unable to marshal config to YAML: %v\n", err)
+	}
+	result := string(bs)
+	fmt.Printf("%s\n", result)
+	return result
+}
+
+func jsonStringSettings() string {
+	c := viper.AllSettings()
+	bs, err := json.Marshal(c)
+	if err != nil {
+		fmt.Printf("unable to marshal config to YAML: %v\n", err)
+	}
+	result := string(bs)
+	fmt.Printf("%s\n", result)
+	return result
+}
+
 func main() {
 	GetYAMLFromString()
 	GetYAMLFromFile()
@@ -230,6 +255,8 @@ func main() {
 	GetNestedJsonKey()
 	GetSubConfig()
 	UnmarshalExample()
+	yamlStringSettings()
+	jsonStringSettings()
 	WatchConfigFile()
 	ch := make(chan os.Signal, 1)
 	signal.Notify(ch, syscall.SIGINT)
