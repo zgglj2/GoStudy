@@ -2,3 +2,8 @@ go get -u -v github.com/spf13/cobra
 go install github.com/spf13/cobra
 
 cobra-cli init
+
+cobra-cli add serve
+cobra-cli add config
+cobra-cli add create -p 'configCmd'
+
