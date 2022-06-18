@@ -11,6 +11,7 @@ import (
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shirou/gopsutil/net"
+	"github.com/shirou/gopsutil/process"
 	"github.com/shirou/gopsutil/v3/host"
 )
 
@@ -112,6 +113,19 @@ func getNetInfo() {
 // 	return localAddr.IP.String()
 // }
 
+func getProcessesInfo() {
+	processes, err := process.Processes()
+	if err != nil {
+		fmt.Printf("get Processes failed, err:%v\n", err)
+		return
+	}
+	for _, process := range processes {
+		fmt.Println(process)
+		fmt.Println(process.Name())
+		fmt.Println(process.Exe())
+	}
+}
+
 func main() {
 	getCpuInfo()
 	getCpuLoad()
@@ -119,4 +133,5 @@ func main() {
 	getHostInfo()
 	getDiskInfo()
 	getNetInfo()
+	getProcessesInfo()
 }
