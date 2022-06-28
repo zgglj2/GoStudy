@@ -244,6 +244,62 @@ func jsonStringSettings() string {
 	return result
 }
 
+type Config struct {
+	Redis string
+	MySQL MySQLConfig
+}
+
+type MySQLConfig struct {
+	Port     int
+	Host     string
+	Username string
+	Password string
+}
+
+func UnmarshalYamlExample() {
+	var config Config
+	v := viper.New()
+	v.SetConfigFile("./config5.yaml")
+	if err := v.ReadInConfig(); err != nil {
+		fmt.Printf("unable to read config file: %v\n", err)
+		return
+	}
+	err := v.Unmarshal(&config)
+	if err != nil {
+		fmt.Printf("unable to unmarshal config: %v\n", err)
+		return
+	}
+	fmt.Printf("%+v\n", config)
+}
+
+type LogWriterConfig struct {
+	LogPath     string `ini:"log_path" json:"log_path" yaml:"log_path" mapstructure:"log_path"`
+	Level       string `ini:"level" json:"level" yaml:"level" mapstructure:"level"`
+	MaxMegaSize int    `ini:"max_size" json:"max_size" yaml:"max_size" mapstructure:"max_size"`
+	MaxBackups  int    `ini:"max_backups" json:"max_backups" yaml:"max_backups" mapstructure:"max_backups"`
+	Compress    bool   `ini:"compress" json:"compress" yaml:"compress" mapstructure:"compress"`
+}
+type LogConfig struct {
+	InfoLogWriterConfig  LogWriterConfig `ini:"infolog" json:"infolog" yaml:"infolog" mapstructure:"infolog"`
+	ErrorLogWriterConfig LogWriterConfig `ini:"errorlog" json:"errorlog" yaml:"errorlog" mapstructure:"errorlog"`
+}
+
+func UnmarshalYamlExample2() {
+	var config LogConfig
+	v := viper.New()
+	v.SetConfigFile("./config6.yaml")
+	if err := v.ReadInConfig(); err != nil {
+		fmt.Printf("unable to read config file: %v\n", err)
+		return
+	}
+	err := v.Unmarshal(&config)
+	if err != nil {
+		fmt.Printf("unable to unmarshal config: %v\n", err)
+		return
+	}
+	fmt.Printf("%+v\n", config)
+}
+
 func main() {
 	GetYAMLFromString()
 	GetYAMLFromFile()
@@ -258,6 +314,8 @@ func main() {
 	yamlStringSettings()
 	jsonStringSettings()
 	WatchConfigFile()
+	UnmarshalYamlExample()
+	UnmarshalYamlExample2()
 	ch := make(chan os.Signal, 1)
 	signal.Notify(ch, syscall.SIGINT)
 	<-ch

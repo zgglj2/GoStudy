@@ -1,0 +1,7 @@
+title: "toml exaples"
+redis: "127.0.0.1:3300"
+mysql: 
+  host: "192.168.1.1"
+  ports: 3306
+  username: "root"
+  password: "root123456"

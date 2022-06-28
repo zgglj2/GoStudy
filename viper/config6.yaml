@@ -1,0 +1,17 @@
+infolog:
+  log_path: agent.log
+  level: debug
+  max_size: 10
+  max_backups: 2
+  compress: true
+
+errorlog:
+  log_path: agent_err.log
+  level: error
+  max_size: 1
+  max_backups: 2
+  compress: true
+  
+panicdump:
+  enable: true
+  log_path: agent_panic.log
