@@ -34,6 +34,7 @@ require (
 	github.com/hpcloud/tail v1.0.0
 	github.com/isbm/go-deb v0.0.0-20200606113352-45f79b074aa5
 	github.com/jmoiron/sqlx v1.3.4
+	github.com/jshiwam/cpy3x v0.0.0-20221005092738-ad7e69dfbee6
 	github.com/json-iterator/go v1.1.12
 	github.com/kardianos/service v1.2.1
 	github.com/lxn/walk v0.0.0-20210112085537-c389da54e794
