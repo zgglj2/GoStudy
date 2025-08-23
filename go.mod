@@ -5,7 +5,6 @@ go 1.23
 toolchain go1.23.5
 
 require (
-	fyne.io/fyne v1.4.3
 	fyne.io/fyne/v2 v2.6.1
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/PaulXu-cn/goeval v0.1.1
@@ -111,7 +110,6 @@ require (
 	github.com/edwingeng/doublejump v0.0.0-20210724020454-c82f1bcb3280 // indirect
 	github.com/facebookgo/clock v0.0.0-20150410010913-600d898af40a // indirect
 	github.com/fatih/color v1.13.0 // indirect
-	github.com/flopp/go-findfont v0.1.0 // indirect
 	github.com/fredbi/uri v1.1.0 // indirect
 	github.com/fyne-io/gl-js v0.1.0 // indirect
 	github.com/fyne-io/glfw-js v0.2.0 // indirect
