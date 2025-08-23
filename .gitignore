@@ -18,4 +18,6 @@ bubble
 *.pem
 *.pprof
 
+*.wasm
+
 vendor/
